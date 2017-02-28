@@ -17,12 +17,12 @@ const Product = require('./product')
 
 const Order = db.define('orders', {
   status: Sequelize.ENUM('inCart', 'processing', 'complete'),
-  products: Sequelize.ARRAY(Sequelize.JSON)
+  items: Sequelize.ARRAY(Sequelize.JSON)
 }, {
     getterMethods: {
         // this is the subtotal => entire order total
         getSubTotal: function() {
-            return this.products.reduce((total, currentProduct) => {
+            return this.items.reduce((total, currentProduct) => {
                 return total + (currentProduct.price * currentProduct.quantity);
             }, 0) 
         }
@@ -30,13 +30,13 @@ const Order = db.define('orders', {
 
     instanceMethods: {
         addProduct: function(productId, productQuantity, productPrice) {
-            for (let product in this.products) {
+            for (let product in this.items) {
                 if (product.id === productId) {
                    product.quantity = productQuantity;
-                   return this.products;
+                   return this.items;
                 }
             }
-            return this.products.push({id: productId, quantity: productQuantity, price: productPrice});
+            return this.items.push({id: productId, quantity: productQuantity, price: productPrice});
         },
         getProduct: function(id) {
             return this.getProduct({
@@ -46,12 +46,12 @@ const Order = db.define('orders', {
             })
         },
         removeProduct: function(id) {
-            this.products = this.products.filter(product => {
+            this.items = this.items.filter(product => {
                 return product.id !== id;
             })
         },
         editItemQuantity: function(id, quantity) {
-            for (let product in this.products) {
+            for (let product in this.items) {
                 if (product.id === id) {
                    product.quantity = quantity;
                    return true;

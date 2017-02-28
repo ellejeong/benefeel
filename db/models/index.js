@@ -12,7 +12,7 @@ const Order = require('./order')
 Order.belongsTo(User, {as: 'customer'})
 // adds User as customerId to Order 
 
-Order.hasMany(Product)
+Product.hasMany(Order)
 // access Product from Order
 // adds productId to Order
 
