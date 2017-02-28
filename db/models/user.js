@@ -1,7 +1,8 @@
 'use strict'
 
 // bcrypt docs: https://www.npmjs.com/package/bcrypt
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs') 
+// bcrypt => ENCRYPTS our passwords so when it's in db, it's not a string of your actual password!
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
@@ -26,6 +27,7 @@ const User = db.define('users', {
   },
   instanceMethods: {
     // This method is a Promisified bcrypt.compare
+    // this is checking the passwords to make sure it's the same
     authenticate(plaintext) {
       return new Promise((resolve, reject) =>
         bcrypt.compare(plaintext, this.password_digest,
@@ -36,6 +38,8 @@ const User = db.define('users', {
   }
 })
 
+// this is setting the email and password to the user
+// upon creation OR updating an account
 function setEmailAndPassword(user) {
   user.email = user.email && user.email.toLowerCase()
   if (!user.password) return Promise.resolve(user)

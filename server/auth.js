@@ -6,6 +6,7 @@ const User = require('APP/db/models/user')
 const OAuth = require('APP/db/models/oauth')
 const auth = require('express').Router()
 
+// this portion of code would be the 'sign-up' OR 'login' page
 
 /*************************
  * Auth strategies

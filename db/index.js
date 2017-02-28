@@ -7,6 +7,7 @@ const app = require('APP')
 const name = (process.env.DATABASE_NAME || app.name) +
   (app.isTesting ? '_test' : '')
 
+// this syncs everything !
 const url = process.env.DATABASE_URL || `postgres://localhost:5432/${name}`
 
 console.log(chalk.yellow(`Opening database connection to ${url}`));
@@ -24,6 +25,7 @@ const db = module.exports = new Sequelize(url, {
 // pull in our models
 require('./models')
 
+// ** REVIEW THIS FUNCTION BELOW WHEN TESTING LATER!
 // sync the db, creating it if necessary
 function sync(force=app.isTesting, retries=0, maxRetries=5) {
   return db.sync({force})

@@ -28,6 +28,7 @@ const OAuth = db.define('oauths', {
 
 // OAuth.V2 is a default argument for the OAuth.setupStrategy method - it's our callback function that will execute when the user has successfully logged in
 OAuth.V2 = (accessToken, refreshToken, profile, done) =>
+  // ** here -> SIGNUP VS. LOGIN = CREATE VS. FIND ??
   OAuth.findOrCreate({
     where: {
       provider: profile.provider,
@@ -61,11 +62,13 @@ OAuth.V2 = (accessToken, refreshToken, profile, done) =>
     .catch(done)
 
 // setupStrategy is a wrapper around passport.use, and is called in authentication routes in server/auth.js
+// ** ASK A FELLOW ABOUT SETTING UP PROVIDER/STRATEGY WHEN UP TO THAT POINT! 
 OAuth.setupStrategy =
 ({
   provider,
   strategy,
   config,
+  // ** OAUTH = OAUTH.V2 ?? WHAT DOES IT MEAN? WHERE DOES IT GO?
   oauth=OAuth.V2,
   passport
 }) => {
