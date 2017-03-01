@@ -1,10 +1,12 @@
 'use strict'
 
 // bcrypt docs: https://www.npmjs.com/package/bcrypt
-const bcrypt = require('bcryptjs') 
+const bcrypt = require('bcryptjs')
 // bcrypt => ENCRYPTS our passwords so when it's in db, it's not a string of your actual password!
 const Sequelize = require('sequelize')
 const db = require('APP/db')
+
+// EI: add whether or not the User is an admin
 
 const User = db.define('users', {
   name: Sequelize.STRING,

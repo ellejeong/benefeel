@@ -4,6 +4,8 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 const Product = require('./product')
 
+// EI: test these methods!
+// EI: check out JSDoc for formatting
 
 // methods: subtotal, additem, getitemprice, get item
 // array of product objects with id, quantity and price
@@ -17,14 +19,14 @@ const Product = require('./product')
 
 const Order = db.define('orders', {
   status: Sequelize.ENUM('inCart', 'processing', 'complete'),
-  items: Sequelize.ARRAY(Sequelize.JSON)
+  items: Sequelize.ARRAY(Sequelize.JSON) // EI: can we do this with associations instead of an array of JSON?
 }, {
     getterMethods: {
         // this is the subtotal => entire order total
         getSubTotal: function() {
             return this.items.reduce((total, currentProduct) => {
                 return total + (currentProduct.price * currentProduct.quantity);
-            }, 0) 
+            }, 0)
         }
     },
 
@@ -38,8 +40,10 @@ const Order = db.define('orders', {
             }
             return this.items.push({id: productId, quantity: productQuantity, price: productPrice});
         },
-        getProduct: function(id) {
-            return this.getProduct({
+        // EI: rename this func
+        getProductById: function(id) {
+            // EI: not sure if Sequelize will care about getProduct vs. getProducts...
+            return this.getProducts({
                 where: {
                     id: id
                 }
