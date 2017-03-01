@@ -31,6 +31,9 @@ export class singleProduct extends Component {
             <li><a href="#">6</a></li>
           </ul>
         </div>
+        <div>
+          <button type="button" class="btn btn-default">Add To Cart</button>
+        </div>
       </div>
     );
   }
