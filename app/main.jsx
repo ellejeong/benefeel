@@ -32,9 +32,7 @@ render(
         <Route
           path="/products/:productId"
           component={singleProduct}
-          onEnter={nextState => {
-            console.log('store: ', store);
-            console.log('State: ', store.getState());
+          onEnter={(nextState) => {
             store.dispatch(asyncSelectProduct(nextState.params.productId));
           }}
         />

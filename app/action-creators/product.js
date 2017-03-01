@@ -12,7 +12,7 @@ export const asyncSelectProduct = productId => {
 	return dispatch => {
 		axios.get(`/api/products/${productId}`)
 			.then(product => {
-				console.log(product);
+				console.log('product: ', product);
 				dispatch(selectProduct(product.data));
 			})
 			.catch(console.error());
