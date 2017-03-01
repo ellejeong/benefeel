@@ -1,27 +1,19 @@
 import React from 'react';
 
-import SELECT_PRODUCT from 'APP/app/constants';
+import {SELECT_PRODUCT} from 'APP/app/constants';
 
-const initialState = {
-	selectedProduct: {}
-};
+const initialState = {};
 
 export default function selectedProductReducer(state = initialState, action) {
-	let newState = Object.assign({}, state);
-	console.log('ACTION: ', action);
-	console.log(action.type === 'SELECT_PRODUCT')
 
 	switch (action.type) {
 
-		case 'SELECT_PRODUCT':
-			console.log('reached SELECT_PRODUCT');
-			newState.selectedProduct = action.selectedProduct;
-			break;
+		case SELECT_PRODUCT:
+			return action.selectedProduct;
 
 		default:
 	// console.log('new state: ', newState);
 			return state;
 
 	}
-	return newState;
 }
