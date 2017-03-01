@@ -28,6 +28,7 @@ render (
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/products" />
         <Route path="/products" component={Products} />
+        <Route path="/Jokes" component={Jokes} />
       </Route>
     </Router>
   </Provider>,
