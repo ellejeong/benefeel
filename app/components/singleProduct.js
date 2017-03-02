@@ -32,7 +32,7 @@ export class singleProduct extends Component {
           </ul>
         </div>
         <div>
-          <button type="button" class="btn btn-default">Add To Cart</button>
+          <button type="button" className="btn btn-default">Add To Cart</button>
         </div>
       </div>
     );

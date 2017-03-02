@@ -25,7 +25,6 @@ export class SearchBarContainer extends Component {
 		console.log(this.state.searchTerm);
 		const searchTerm = this.state.searchTerm;
 
-		// axios.get(`/api/products/${searchTerm}`)
 	}
 
 	render() {
@@ -42,7 +41,7 @@ export class SearchBarContainer extends Component {
 }
 
 export const mapStateToProps = state => {
-	console.log(state);
+	console.log('state: ', state);
 	// return { const products = state.productList }
 };
 
