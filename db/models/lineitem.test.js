@@ -16,7 +16,6 @@ describe('LineItem', () => {
         quantity: 2
       })
         .then(lineitem => {
-           console.log("lineitem", lineitem)
            expect(lineitem.itemTotal).to.equal(1600);
           done()
         }).catch(done)

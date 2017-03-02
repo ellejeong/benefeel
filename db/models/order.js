@@ -20,12 +20,14 @@ const Order = db.define('orders', {
 }, {
     getterMethods: {
         // this is the subtotal => entire order total
-        getSubTotal: function() {
-            var lineItems = this.getLineItems() 
-            console.log('OVAAA HEAAAA BEY',lineItems);
-            //.reduce((total, currentProduct) => {
-            //    return total + (currentProduct.price * currentProduct.quantity);
-            //}, 0) 
+        subTotal: function() {
+            //getLineItems() is a promise
+            return this.getLineItems().then((lineItems)=>{
+              //add up itemtotal for each line item
+              return lineItems.reduce((total, currentItem) => {
+                return total + currentItem.itemTotal;
+              }, 0)
+            }).catch(console.error)
         }
     }
 });
