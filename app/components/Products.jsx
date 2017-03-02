@@ -25,7 +25,7 @@ componentDidMount () {
 
     var productList = this.state.productList;
 
-// IMAGE SOURCE: 
+// IMAGE SOURCE:
 const defaultImg = 'https://s-media-cache-ak0.pinimg.com/236x/00/c8/78/00c878efe94e7ef87c4eec68b612de6f.jpg'
 
     return (
@@ -34,9 +34,9 @@ const defaultImg = 'https://s-media-cache-ak0.pinimg.com/236x/00/c8/78/00c878efe
       <div>
         <h1>All Products!</h1>
         <div className="flexContainer">
-        {productList.map(product => { 
+        {productList.map(product => {
             return (<div key={product.id} className="flexItem">
-            <Link to="/Jokes">
+            <Link to={`/products/${product.id}`}>
             <img src={defaultImg} />
             <h2>{product.title}</h2>
             <h3>{product.price}</h3>
@@ -47,6 +47,6 @@ const defaultImg = 'https://s-media-cache-ak0.pinimg.com/236x/00/c8/78/00c878efe
       </div>
 
     )
-  
+
   }
 }
