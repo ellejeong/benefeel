@@ -9,20 +9,26 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import singleProduct from './components/singleProduct';
-import { asyncSelectProduct } from './action-creators/product';
-import Products from './components/Products'
+import { receiveProduct, receiveAllProducts } from './action-creators/product';
+import Products from './components/Products';
+import NavBar from './components/NavBar';
 
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 ) (
   ({ user, children }) =>
+  <div>
+    <div>
+      <NavBar />
+    </div>
     <div>
       <nav>
         {user ? <WhoAmI/> : <Login/>}
       </nav>
       {children}
     </div>
+  </div>
 )
 
 render(
@@ -30,13 +36,20 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/products" />
-        <Route path="/products" component={Products} />
+        <Route
+          path="/products"
+          component={Products}
+          onEnter={(nextState) => {
+            console.log('nextState: ', nextState);
+            store.dispatch(receiveAllProducts(nextState.params.products));
+          }}
+        />
         <Route path="/Jokes" component={Jokes} />
         <Route
           path="/products/:productId"
           component={singleProduct}
           onEnter={(nextState) => {
-            store.dispatch(asyncSelectProduct(nextState.params.productId));
+            store.dispatch(receiveProduct(nextState.params.productId));
           }}
         />
       </Route>
