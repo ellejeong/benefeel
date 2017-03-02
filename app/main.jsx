@@ -10,6 +10,8 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import singleProduct from './components/singleProduct';
 import { asyncSelectProduct } from './action-creators/product';
+import Products from './components/Products'
+
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -27,8 +29,9 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
-        <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={Jokes} />
+        <IndexRedirect to="/products" />
+        <Route path="/products" component={Products} />
+        <Route path="/Jokes" component={Jokes} />
         <Route
           path="/products/:productId"
           component={singleProduct}

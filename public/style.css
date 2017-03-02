@@ -1,0 +1,22 @@
+h2 {
+    color: deeppink;
+    font-family: arial;
+}
+
+
+h3 {
+    color: hotpink;
+    font-family: arial;
+}
+
+.flexContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.flexItem {
+    text-align: center;
+}
