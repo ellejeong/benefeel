@@ -8,7 +8,10 @@ import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
+import singleProduct from './components/singleProduct';
+import { asyncSelectProduct } from './action-creators/product';
 import Products from './components/Products'
+
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -22,15 +25,22 @@ const ExampleApp = connect(
     </div>
 )
 
-render (
+render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp}>
         <IndexRedirect to="/products" />
         <Route path="/products" component={Products} />
         <Route path="/Jokes" component={Jokes} />
+        <Route
+          path="/products/:productId"
+          component={singleProduct}
+          onEnter={(nextState) => {
+            store.dispatch(asyncSelectProduct(nextState.params.productId));
+          }}
+        />
       </Route>
     </Router>
   </Provider>,
   document.getElementById('main')
-)
+);
