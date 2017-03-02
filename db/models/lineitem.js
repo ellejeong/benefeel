@@ -18,6 +18,4 @@ const LineItem = db.define('lineItems', {
 });
 
 
-
-
 module.exports = LineItem
