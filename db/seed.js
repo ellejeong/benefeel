@@ -27,5 +27,10 @@ db.didSync
   .then(products => console.log(`Seeded ${products.length} products OK`))
   .then(seedReviews)
   .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
-  .catch(error => console.error(error))    
+  .then(()=>{
+    return db.model('orders').create({
+      status: "inCart"
+    })
+  }).then((createdOrder) => createdOrder.setCustomer(1))
+  .catch(error => console.error(error))
   .finally(() => db.close())

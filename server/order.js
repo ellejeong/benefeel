@@ -3,7 +3,7 @@
 const db = require('APP/db')
 const Order = db.model('orders')
 const Product = db.model('products')
-const LineItem = db.model('lineitems')
+const LineItem = db.model('lineItems')
 
 module.exports = require('express').Router()
   //get all orders, ADMIN ONLY
@@ -23,7 +23,8 @@ module.exports = require('express').Router()
   //router param, find or create cart(Order status:"inCart") for user
   //need user id in req.body
   .param('userid', (req, res, next, userid) => {
-    var customerId= userid   //put correct reference for user id
+    let customerId= userid   //put correct reference for user id
+    console.log("looking for user id", userid);
     Order.findOrCreate({
       where:{
         customer_id: customerId,
@@ -35,8 +36,8 @@ module.exports = require('express').Router()
       next()
     }).catch(next)
    })
-  .get('cart/:userid', (req, res, next)=>{
-    console.log("order:", req.cart)
+   //Get Cart of user by user id
+  .get('/cart/:userid', (req, res, next)=>{
     res.send("")
   })
   //post: add item to cart relying on router.param for 'cart'
@@ -44,23 +45,20 @@ module.exports = require('express').Router()
   //lineitem.addProduct
   //need product in req.body
   //need quantity in req.body
-  // .post('/cart/add', (req, res,next) =>
-  //   let product=req.body.product
-  //   let quantity=req.body.quantity
-  //
-  //   LineItem.create({
-  //     description: product.description
-  //     price: product.price
-  //     quantity: quantity
-  //   }).then(lineitem => {
-  //       lineitem.addProduct(product.id)
-  //       lineitem.addOrder(req.cart.id)
-  //       req.cart.addLineItem()
-  //   }).then(
-  //   }).catch(next)
-  // )
+  .post('/cart/:userid/add', (req, res,next) => {
+    let product=req.body.product
+    let quantity=req.body.quantity
+    let cart=req.cart
+    let lineitem
 
-
-
-  //need to find order::
-  //lineItem.addOrder//Order.addLineItem
+    LineItem.create({
+      description: product.description,
+      price: product.price,
+      quantity: quantity
+    }).then(createdLineItem => {
+        lineitem=createdLineItem
+        return lineitem.addProduct(product.id)
+    }).then(()=> lineitem.addOrder(req.cart.id))
+    .then(()=>cart.addLineItem())
+    .catch(next)
+  })
