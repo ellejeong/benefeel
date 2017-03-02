@@ -9,6 +9,12 @@ const LineItem = db.define('lineItems', {
     description: Sequelize.TEXT,
     price: Sequelize.INTEGER,
     quantity: Sequelize.INTEGER
+},{
+  getterMethods:{
+    itemTotal: function(){
+      return this.price*this.quantity
+    }
+  }
 });
 
 
