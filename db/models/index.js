@@ -38,14 +38,6 @@ Order.belongsTo(User, {as: 'customer'})
 // adds User as customerId to Order
 // Order.getCustomer, Order.setCustomer, Order.createCustomer
 
-Product.hasMany(Order)
-// access Product from Order
-// Ari: I don't think we need this . . . 
-// adds productId to Order
-// Product.addOrder, Product.removeOrder, Product.getOrders
-
-
-
 OAuth.belongsTo(User)
 // adds User as userId to OAuth 
 // OAuth.getUser, OAuth.setUser, OAuth.createUser
@@ -53,4 +45,4 @@ OAuth.belongsTo(User)
 User.hasOne(OAuth)
 
 
-module.exports = {User, Product, Order}
+module.exports = {User, Product, Order, LineItem}
