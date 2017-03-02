@@ -2,8 +2,6 @@
 //
 // const db = require('APP/db')
 // const Order = require('./order')
-// const Product = require('./product')
-// const LineItem = require('./lineitem')
 // const {expect} = require('chai')
 //
 // const seedUsers = () => db.Promise.map([
@@ -19,12 +17,12 @@
 //   {title: 'Christmas Morning', category: 'themes', price: 1000, description: 'This jar of Christmas Morning with have you laughing and HOHOHO-ing all the way to the North Pole - great for individuals who are less than festive and have children', inventory: 5}
 // ], product => db.model('products').create(product))
 //
-// describe('LineItem', () => {
+// describe('Order', () => {
 //   before('wait for the db', () => db.sync({force: true}))
 //
-//   describe('Create a LineItem', () => {
-//     it('Creates a LineItem', () => {
-//       LineItem.create({ price, description, quantity })
+//   describe('Returns correct subtotal', () => {
+//     it('Returns subtotal of items in cart', () => {
+//       Order.getSubTotal()
 //         .then(user => user.authenticate('ok'))
 //         .then(result => expect(result).to.be.true)
 //     })
