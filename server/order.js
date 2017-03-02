@@ -24,7 +24,6 @@ module.exports = require('express').Router()
   //need user id in req.body
   .param('userid', (req, res, next, userid) => {
     let customerId= userid   //put correct reference for user id
-    console.log("looking for user id", userid);
     Order.findOrCreate({
       where:{
         customer_id: customerId,
@@ -38,7 +37,7 @@ module.exports = require('express').Router()
    })
    //Get Cart of user by user id
   .get('/cart/:userid', (req, res, next)=>{
-    res.send("")
+    res.status(200).json(req.cart);
   })
   //post: add item to cart relying on router.param for 'cart'
   //create lineitem from product
@@ -61,4 +60,26 @@ module.exports = require('express').Router()
     }).then(()=> lineitem.addOrder(req.cart.id))
     .then(()=>cart.addLineItem())
     .catch(next)
+  })
+
+
+  /////////////////////////////////////////////////////////////////
+  //router param, save order
+  .param('orderid', (req, res, next, orderid) => {
+    Order.findOne({
+      where:{
+        id: orderid
+      }
+    })
+    .then(foundOrder => {
+      req.order= foundOrder;
+      next()
+    }).catch(next)
+   })
+   //Get all line items of an order
+  .get('/order/:orderid', (req, res, next)=>{
+    req.order.getLineItems()
+      .then((lineItems)=>{
+        res.status(200).json(lineItems);
+      }).catch(next)
   })
