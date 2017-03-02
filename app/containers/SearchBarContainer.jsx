@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import SearchProducts from 'APP/app/components/SearchProducts';
+import {Products} from 'APP/app/components/Products';
 
-export default class SearchBarContainer extends Component {
+export class SearchBarContainer extends Component {
 	constructor(props) {
 		super(props);
 
@@ -21,6 +23,9 @@ export default class SearchBarContainer extends Component {
 	handleSearchSubmit(event) {
 		event.preventDefault();
 		console.log(this.state.searchTerm);
+		const searchTerm = this.state.searchTerm;
+
+		// axios.get(`/api/products/${searchTerm}`)
 	}
 
 	render() {
@@ -36,9 +41,10 @@ export default class SearchBarContainer extends Component {
 	}
 }
 
-// export const mapStateToProps = state => {
-// 	return { searchTerm: state.searchTerm };
-// };
+export const mapStateToProps = state => {
+	console.log(state);
+	// return { const products = state.productList }
+};
 
 // export const mapDispatchToProps = dispatch => {
 // 	return {
@@ -46,4 +52,4 @@ export default class SearchBarContainer extends Component {
 // 	}
 // }
 
-// export default connect(mapStateToProps)(SearchProducts);
+export default connect(mapStateToProps)(SearchProducts);

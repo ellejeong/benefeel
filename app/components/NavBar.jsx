@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import SearchBarContainer from 'APP/app/containers/SearchBarContainer';
+import {SearchBarContainer} from 'APP/app/containers/SearchBarContainer';
 
 export default class NavBar extends Component {
 
