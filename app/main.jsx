@@ -10,19 +10,25 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import singleProduct from './components/singleProduct';
 import { asyncSelectProduct } from './action-creators/product';
-import Products from './components/Products'
+import Products from './components/Products';
+import NavBar from './components/NavBar';
 
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 ) (
   ({ user, children }) =>
+  <div>
+    <div>
+      <NavBar />
+    </div>
     <div>
       <nav>
         {user ? <WhoAmI/> : <Login/>}
       </nav>
       {children}
     </div>
+  </div>
 )
 
 render(
