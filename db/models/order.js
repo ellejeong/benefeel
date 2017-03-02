@@ -3,6 +3,7 @@
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 const Product = require('./product')
+const LineItem = require('./lineitem')
 
 
 // methods: subtotal, additem, getitemprice, get item
@@ -14,50 +15,19 @@ const Product = require('./product')
 // {id: 6, quantity: 2, itemPrice:5, totalPrice: 10}
 // ]
 
-
 const Order = db.define('orders', {
   status: Sequelize.ENUM('inCart', 'processing', 'complete'),
-  items: Sequelize.ARRAY(Sequelize.JSON)
 }, {
     getterMethods: {
         // this is the subtotal => entire order total
-        getSubTotal: function() {
-            return this.items.reduce((total, currentProduct) => {
-                return total + (currentProduct.price * currentProduct.quantity);
-            }, 0) 
-        }
-    },
-
-    instanceMethods: {
-        addProduct: function(productId, productQuantity, productPrice) {
-            for (let product in this.items) {
-                if (product.id === productId) {
-                   product.quantity = productQuantity;
-                   return this.items;
-                }
-            }
-            return this.items.push({id: productId, quantity: productQuantity, price: productPrice});
-        },
-        getProduct: function(id) {
-            return this.getProduct({
-                where: {
-                    id: id
-                }
-            })
-        },
-        removeProduct: function(id) {
-            this.items = this.items.filter(product => {
-                return product.id !== id;
-            })
-        },
-        editItemQuantity: function(id, quantity) {
-            for (let product in this.items) {
-                if (product.id === id) {
-                   product.quantity = quantity;
-                   return true;
-                }
-            }
-            return false;
+        subTotal: function() {
+            //getLineItems() is a promise
+            return this.getLineItems().then((lineItems)=>{
+              //add up itemtotal for each line item
+              return lineItems.reduce((total, currentItem) => {
+                return total + currentItem.itemTotal;
+              }, 0)
+            }).catch(console.error)
         }
     }
 });

@@ -32,7 +32,7 @@ const defaultImg = 'https://s-media-cache-ak0.pinimg.com/236x/00/c8/78/00c878efe
 
 
       <div>
-        <h1>All Products!</h1>
+        <h1>Welcome to Benefeel!</h1>
         <div className="flexContainer">
         {productList.map(product => {
             return (<div key={product.id} className="flexItem">

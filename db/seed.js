@@ -13,11 +13,19 @@ const seedProducts = () => db.Promise.map([
   {title: 'Christmas Morning', category: 'themes', price: 1000, description: 'This jar of Christmas Morning with have you laughing and HOHOHO-ing all the way to the North Pole - great for individuals who are less than festive and have children', inventory: 5}
 ], product => db.model('products').create(product))
 
+
+const seedReviews = () => db.Promise.map([
+  {title: 'Happiness is wonderful!', rating: 5, description: 'This was the best purchase of MY LIFE!', product_id: 1},
+  {title: 'It was good!', rating: 4, description: 'This was a handy purchase for my down times!', product_id: 1}
+], review => db.model('reviews').create(review))
+
 db.didSync
   .then(() => db.sync({force: true}))
   .then(seedUsers)
   .then(users => console.log(`Seeded ${users.length} users OK`))
   .then(seedProducts)
   .then(products => console.log(`Seeded ${products.length} products OK`))
+  .then(seedReviews)
+  .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
   .catch(error => console.error(error))    
   .finally(() => db.close())
