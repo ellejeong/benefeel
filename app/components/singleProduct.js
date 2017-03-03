@@ -4,7 +4,18 @@ import { connect } from 'react-redux';
 import store from '../store';
 
 export class singleProduct extends Component {
+  // SH: this is what i was trying to get to work so that handlesubmit will take the quantity and hold onto that
+	constructor(props) {
+		super(props);
 
+    this.state = { quantity: 1 };
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleSubmit(evt) {
+		evt.preventDefault();
+    console.log('submit to cart quantity:', this.state.quantity)
+	}
 
   render() {
     const selectedProduct = this.props.selectedProduct;
@@ -21,7 +32,11 @@ export class singleProduct extends Component {
         </div>
         <div>
         <h5>Quantity:</h5>
-        <select className="custom-select">
+        <form onSubmit={this.handleSubmit}>
+        <select className="custom-select"
+                onChange={evt => {
+                  this.setState({quantity: evt.target.value})
+        }}>
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -29,10 +44,10 @@ export class singleProduct extends Component {
           <option>5</option>
           <option>6</option>
         </select>
+        <button type="submit" className="btn btn-default">Add To Cart</button>
+        </form>
         </div>
-        <div>
-          <button type="button" className="btn btn-default" onClick={() => console.log('hi')}>Add To Cart</button>
-        </div>
+
         <div>
           <h2>Reviews:</h2>
           <p>Some reviews here</p>
