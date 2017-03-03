@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import SearchProducts from 'APP/app/components/SearchProducts';
 import Products from 'APP/app/components/Products';
-import singleProduct from 'APP/app/components/singleProduct';
+import SingleProduct from 'APP/app/components/SingleProduct';
 import { selectProduct } from 'APP/app/action-creators/product';
 import store from '../store';
 
@@ -28,23 +28,15 @@ export class SearchBarContainer extends Component {
 	handleSearchSubmit(event) {
 		event.preventDefault();
 
-		const searchTerm = this.state.searchTerm;
-
 		const searchedProduct = this.props.products.filter((product) => {
-			return product.title.match(searchTerm);
+			return product.title.match(this.state.searchTerm);
 		});
 
 		console.log('searchedProduct: ', searchedProduct);
-		// this.setState({ searchedProduct });
 		store.dispatch(selectProduct(searchedProduct));
-
 	}
 
 	render() {
-		// const searchTerm = this.state.searchTerm;
-		// const searchedProducts = this.props.products.filter((product) => {
-		// 	return product.title.match(searchTerm);
-		// });
 
 		return (
 			<div>

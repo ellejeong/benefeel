@@ -19,7 +19,7 @@ export default connect(mapStateToProps)(
                 quantity: 1
             };
             this.handleSubmit = this.handleSubmit.bind(this);
-            this.handleInputChange = this.handleInputChange.bind(this)
+            this.handleInputChange = this.handleInputChange.bind(this);
         }
 
         handleInputChange(evt) {
