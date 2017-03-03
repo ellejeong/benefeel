@@ -1,3 +1,9 @@
+h1 {
+    color: deeppink;
+    font-family: arial;
+}
+
+
 h2 {
     color: deeppink;
     font-family: arial;
@@ -17,6 +23,29 @@ h3 {
     align-items: center;
 }
 
+.flexContainer1 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.flexContainer2 {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+
 .flexItem {
     text-align: center;
 }
+
+.cartItem {
+    color: red;
+    border-bottom: 2px solid gray;
+}
+

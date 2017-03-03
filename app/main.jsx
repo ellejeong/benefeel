@@ -11,6 +11,7 @@ import WhoAmI from './components/WhoAmI'
 import singleProduct from './components/singleProduct';
 import { asyncSelectProduct } from './action-creators/product';
 import Products from './components/Products'
+import Cart from './components/Cart'
 
 
 const ExampleApp = connect(
@@ -39,6 +40,7 @@ render(
             store.dispatch(asyncSelectProduct(nextState.params.productId));
           }}
         />
+        <Route path="/cart" component={Cart} />
       </Route>
     </Router>
   </Provider>,

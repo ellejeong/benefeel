@@ -45,10 +45,9 @@ module.exports = require('express').Router()
   //need product in req.body
   //need quantity in req.body
   .post('/cart/:userid/add', (req, res, next) => {
-
-    console.log('REQBODYYYY', req.body);
-    console.log("productid body", req.body.productId);
-    console.log("quantity body", req.body.quantity )
+    // console.log('REQBODYYYY', req.body);
+    // console.log("productid body", req.body.productId);
+    // console.log("quantity body", req.body.quantity )
 
     let productId = +req.body.productId
     let quantity = +req.body.quantity
@@ -56,7 +55,6 @@ module.exports = require('express').Router()
     let lineitem;
 
     console.log('PRODUCTIDDDD BEFORE', productId);
-
     Product.findById(productId)
     .then(product => {
       //console.log('PRODUCTIDDDD AFTERRRRRRR', product);

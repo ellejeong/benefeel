@@ -16,7 +16,8 @@ module.exports = {
   entry: './app/main.jsx',
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: './public/bundle.js',
+    publicPath: '/'
   },
   context: __dirname,
   devtool: devMode && USE_FAST_SOURCE_MAPS ?
@@ -26,6 +27,9 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json', '*']
   },
   module: {
+    loaders: [
+      { test: /\.css$/, loader: "style-loader!css-loader"}
+    ],
     rules: [{
       test: /jsx?$/,
       exclude: /(node_modules|bower_components)/,
@@ -35,7 +39,7 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-2']
         }
       }]
-    }]
+    }],
   },
   plugins: devMode ? [
     new LiveReloadPlugin({
