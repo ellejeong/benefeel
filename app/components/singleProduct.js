@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import store from '../store';
+import SearchBarContainer from '../containers/SearchBarContainer'
 
 export class singleProduct extends Component {
 
