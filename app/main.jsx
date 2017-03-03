@@ -40,7 +40,6 @@ render(
           path="/products"
           component={Products}
           onEnter={(nextState) => {
-            console.log('nextState: ', nextState);
             store.dispatch(receiveAllProducts(nextState.params.products));
           }}
         />

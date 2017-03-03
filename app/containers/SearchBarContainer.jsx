@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import SearchProducts from 'APP/app/components/SearchProducts';
-import {Products} from 'APP/app/components/Products';
+import Products from 'APP/app/components/Products';
 
 export class SearchBarContainer extends Component {
 	constructor(props) {
@@ -16,14 +16,22 @@ export class SearchBarContainer extends Component {
 	}
 
 	handleInputChange(event) {
-		console.log(event.target.value);
 		this.setState({searchTerm: event.target.value});
 	}
 
 	handleSearchSubmit(event) {
 		event.preventDefault();
-		console.log(this.state.searchTerm);
+
+		console.log('props: ', this.props);
+
 		const searchTerm = this.state.searchTerm;
+		console.log(searchTerm);
+
+		const searchedProducts = this.props.products.filter((product) => {
+			return product.title.match(searchTerm);
+		});
+
+		console.log(searchedProducts);
 
 	}
 
@@ -40,15 +48,12 @@ export class SearchBarContainer extends Component {
 	}
 }
 
-export const mapStateToProps = state => {
+export const mapStateToProps = (state) => {
 	console.log('state: ', state);
-	// return { const products = state.productList }
+
+	return {
+		products: state.allProducts
+	};
 };
 
-// export const mapDispatchToProps = dispatch => {
-// 	return {
-
-// 	}
-// }
-
-export default connect(mapStateToProps)(SearchProducts);
+export default connect(mapStateToProps)(SearchBarContainer);
