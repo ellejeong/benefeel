@@ -8,10 +8,12 @@ import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
-import singleProduct from './components/singleProduct';
+import SingleProduct from './components/SingleProduct';
 import { receiveProduct, receiveAllProducts } from './action-creators/product';
 import Products from './components/Products';
 import NavBar from './components/NavBar';
+import SingleProductContainer from './containers/SingleProductContainer';
+
 
 
 const ExampleApp = connect(
@@ -40,14 +42,13 @@ render(
           path="/products"
           component={Products}
           onEnter={(nextState) => {
-            console.log('nextState: ', nextState);
             store.dispatch(receiveAllProducts(nextState.params.products));
           }}
         />
         <Route path="/Jokes" component={Jokes} />
         <Route
           path="/products/:productId"
-          component={singleProduct}
+          component={SingleProductContainer}
           onEnter={(nextState) => {
             store.dispatch(receiveProduct(nextState.params.productId));
           }}

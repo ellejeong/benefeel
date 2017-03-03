@@ -1,42 +1,23 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
-import store from '../store';
+export default function (props) {
 
-export class singleProduct extends Component {
-  // SH: this is what i was trying to get to work so that handlesubmit will take the quantity and hold onto that
-	constructor(props) {
-		super(props);
-
-    this.state = { quantity: 1 };
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	handleSubmit(evt) {
-		evt.preventDefault();
-    console.log('submit to cart quantity:', this.state.quantity)
-	}
-
-  render() {
-    const selectedProduct = this.props.selectedProduct;
-
+    if(!props.selectedProduct) return null;
     return (
       <div className="container flexbox-container">
         <div>
-          <h1>{selectedProduct.title}</h1>
+          <h1>{props.selectedProduct.title}</h1>
         </div>
         <div>
           <h2>Product Description:</h2>
-          <p>{selectedProduct.description}</p>
-          <p>${selectedProduct.price}.00</p>
+          <p>{props.selectedProduct.description}</p>
+          <p>${props.selectedProduct.price}.00</p>
         </div>
         <div>
         <h5>Quantity:</h5>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={props.handleSubmit}>
         <select className="custom-select"
-                onChange={evt => {
-                  this.setState({quantity: evt.target.value})
-        }}>
+                onChange={props.handleInputChange}>
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -55,12 +36,3 @@ export class singleProduct extends Component {
       </div>
     );
   }
-}
-
-const mapStateToProps = state => {
-  return {
-    selectedProduct: state.selectedProduct
-  };
-};
-
-export default connect(mapStateToProps)(singleProduct);
