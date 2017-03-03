@@ -12,7 +12,6 @@ export default function selectedProductReducer(state = initialState, action) {
 			return action.selectedProduct;
 
 		default:
-	// console.log('new state: ', newState);
 			return state;
 
 	}
