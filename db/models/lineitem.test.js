@@ -11,7 +11,7 @@ describe('LineItem', () => {
     //sample test, not necessary
     it('gettermethod itemTotal returns correct value', (done)=>{
       LineItem.create({
-        description: "best product ever",
+        name: "best product ever",
         price: 800,
         quantity: 2
       })
