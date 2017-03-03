@@ -44,22 +44,47 @@ module.exports = require('express').Router()
   //lineitem.addProduct
   //need product in req.body
   //need quantity in req.body
-  .post('/cart/:userid/add', (req, res,next) => {
-    let product=req.body.product
-    let quantity=req.body.quantity
-    let cart=req.cart
-    let lineitem
+  .post('/cart/:userid/add', (req, res, next) => {
 
-    LineItem.create({
-      description: product.description,
-      price: product.price,
-      quantity: quantity
-    }).then(createdLineItem => {
+    console.log('REQBODYYYY', req.body);
+    console.log("productid body", req.body.productId);
+    console.log("quantity body", req.body.quantity )
+
+    let productId = +req.body.productId
+    let quantity = +req.body.quantity
+    let cart = req.cart
+    let lineitem;
+
+    console.log('PRODUCTIDDDD BEFORE', productId);
+
+    Product.findById(productId)
+    .then(product => {
+      //console.log('PRODUCTIDDDD AFTERRRRRRR', product);
+      return LineItem.create({
+        name: product.title,
+        price: product.price,
+        quantity: quantity
+      })
+    })
+  .then(createdLineItem => {
+   // console.log("createdLineItem", createdLineItem)
         lineitem=createdLineItem
-        return lineitem.addProduct(product.id)
-    }).then(()=> lineitem.addOrder(req.cart.id))
-    .then(()=>cart.addLineItem())
-    .catch(next)
+        return lineitem.setProduct(productId)
+    })
+  .then(()=> {
+    console.log('PRODUCT SETTTTTTT')
+    return lineitem.setOrder(req.cart.id)
+  })
+  .then(()=> {
+    console.log('ORDER SETTTTTTTTTTT')
+    console.log('cart: ', cart)
+    return cart.addLineItem(lineitem.id)
+  })
+  .then(function() {
+    console.log('AFTER ORDER SETTTINGGGGG')
+    res.status(201).json(lineitem);
+  })
+  .catch(next)
   })
 
 
