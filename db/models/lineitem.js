@@ -6,7 +6,7 @@ const Product = require('./product')
 const Order = require('./order')
 
 const LineItem = db.define('lineItems', {
-    description: Sequelize.TEXT,
+    name: Sequelize.STRING,
     price: Sequelize.INTEGER,
     quantity: Sequelize.INTEGER
 },{
