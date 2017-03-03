@@ -9,10 +9,12 @@ import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
-import singleProduct from './components/singleProduct';
-import { receiveProduct, receiveAllProducts, selectAllProducts } from './action-creators/product';
+import { receiveProduct, selectAllProducts } from './action-creators/product';
+import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
 import NavBar from './components/NavBar';
+import SingleProductContainer from './containers/SingleProductContainer';
+
 
 
 const ExampleApp = connect(
@@ -51,7 +53,7 @@ render(
         <IndexRedirect to="/products" />
         <Route path="/products" component={Products} />
         <Route path="/Jokes" component={Jokes} />
-        <Route path="/products/:productId" component={singleProduct} onEnter={onProductEnter} />
+        <Route path="/products/:productId" component={SingleProductContainer} onEnter={onProductEnter} />
       </Route>
     </Router>
   </Provider>,

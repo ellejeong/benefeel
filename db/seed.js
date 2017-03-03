@@ -13,11 +13,22 @@ const seedProducts = () => db.Promise.map([
   {title: 'Christmas Morning', category: 'themes', price: 1000, description: 'This jar of Christmas Morning with have you laughing and HOHOHO-ing all the way to the North Pole - great for individuals who are less than festive and have children', inventory: 5}
 ], product => db.model('products').create(product))
 
-
 const seedReviews = () => db.Promise.map([
   {title: 'Happiness is wonderful!', rating: 5, description: 'This was the best purchase of MY LIFE!', product_id: 1},
   {title: 'It was good!', rating: 4, description: 'This was a handy purchase for my down times!', product_id: 1}
 ], review => db.model('reviews').create(review))
+
+const seedOrders = () => db.Promise.map([
+  {status: 'inCart'}
+], order => db.model('orders').create(order))
+
+const seedLineItems = () => db.Promise.map([
+  {name: 'Happiness', price: 100, quantity: 2},
+  {name: 'Elation', price: 100, quantity: 1}
+], lineItem => db.model('lineItems').create(lineItem))
+
+let seededOrders;
+let seededLineItems;
 
 db.didSync
   .then(() => db.sync({force: true}))
@@ -27,5 +38,29 @@ db.didSync
   .then(products => console.log(`Seeded ${products.length} products OK`))
   .then(seedReviews)
   .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
-  .catch(error => console.error(error))    
+  .then(seedOrders)
+  .then((createdOrders) => {
+    seededOrders = createdOrders;
+    console.log(`Seeded ${createdOrders.length} orders OK`);
+    return createdOrders[0].setCustomer(1)
+  })
+  .then(seedLineItems)
+  .then((createdLineItems) => {
+    seededLineItems = createdLineItems;
+    console.log(`Seeded ${createdLineItems.length} lineItems OK`);
+    return Promise.all([
+    createdLineItems[0].setOrder(1),
+    createdLineItems[1].setOrder(1),
+    seededOrders[0].setLineItems(createdLineItems),
+    createdLineItems[0].setProduct(1),
+    createdLineItems[1].setProduct(2)
+    ])
+
+  })
+  // .then(()=>{
+  //   return db.model('orders').create({
+  //     status: "inCart"
+  //   })
+  // }).then((createdOrder) => createdOrder.setCustomer(1))
+  .catch(error => console.error(error))
   .finally(() => db.close())
