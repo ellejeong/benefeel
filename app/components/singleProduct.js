@@ -19,25 +19,23 @@ export class singleProduct extends Component {
           <p>{selectedProduct.description}</p>
           <p>${selectedProduct.price}.00</p>
         </div>
-        <div className="btn-group">
-          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quantity <span className="caret"></span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-          </ul>
+        <div>
+        <h5>Quantity:</h5>
+        <select className="custom-select">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
         </div>
         <div>
-          <button type="button" className="btn btn-default">Add To Cart</button>
+          <button type="button" className="btn btn-default" onClick={() => console.log('hi')}>Add To Cart</button>
         </div>
         <div>
           <h2>Reviews:</h2>
           <p>Some reviews here</p>
-
         </div>
       </div>
     );
