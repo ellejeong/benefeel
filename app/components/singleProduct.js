@@ -1,53 +1,38 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
-import store from '../store';
+export default function (props) {
 
-export class singleProduct extends Component {
-
-
-  render() {
-    const selectedProduct = this.props.selectedProduct;
-
+    if(!props.selectedProduct) return null;
     return (
       <div className="container flexbox-container">
         <div>
-          <h1>{selectedProduct.title}</h1>
+          <h1>{props.selectedProduct.title}</h1>
         </div>
         <div>
           <h2>Product Description:</h2>
-          <p>{selectedProduct.description}</p>
-          <p>${selectedProduct.price}.00</p>
-        </div>
-        <div className="btn-group">
-          <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quantity <span className="caret"></span>
-          </button>
-          <ul className="dropdown-menu">
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-          </ul>
+          <p>{props.selectedProduct.description}</p>
+          <p>${props.selectedProduct.price}.00</p>
         </div>
         <div>
-          <button type="button" className="btn btn-default">Add To Cart</button>
+        <h5>Quantity:</h5>
+        <form onSubmit={props.handleSubmit}>
+        <select className="custom-select"
+                onChange={props.handleInputChange}>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+        <button type="submit" className="btn btn-default">Add To Cart</button>
+        </form>
         </div>
+
         <div>
           <h2>Reviews:</h2>
           <p>Some reviews here</p>
-
         </div>
       </div>
     );
   }
-}
-
-const mapStateToProps = state => {
-  return {
-    selectedProduct: state.selectedProduct
-  };
-};
-
-export default connect(mapStateToProps)(singleProduct);
