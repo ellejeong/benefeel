@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 import SearchProducts from 'APP/app/components/SearchProducts';
-import Products from 'APP/app/components/Products';
-import SingleProduct from 'APP/app/components/SingleProduct';
 import { selectProduct } from 'APP/app/action-creators/product';
 import store from '../store';
 
@@ -33,9 +30,7 @@ export class SearchBarContainer extends Component {
 			return product.title.match(this.state.searchTerm);
 		});
 
-		console.log('searchedProduct: ', searchedProduct);
 		store.dispatch(selectProduct(searchedProduct));
-
 		browserHistory.push(`/products/${searchedProduct[0].id}`);
 	}
 
@@ -53,8 +48,6 @@ export class SearchBarContainer extends Component {
 }
 
 export const mapStateToProps = (state) => {
-	console.log('state: ', state);
-
 	return {
 		products: state.allProducts,
 		selectedProduct: state.selectedProduct
