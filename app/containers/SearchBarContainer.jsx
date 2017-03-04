@@ -33,11 +33,14 @@ export class SearchBarContainer extends Component {
 			return product.title.match(this.state.searchTerm);
 		});
 
+		console.log('searchedProduct: ', searchedProduct);
 		store.dispatch(selectProduct(searchedProduct));
-		this.setState({selectedProduct: searchedProduct})
+
+		console.log('SEARCHED PRODUCT', searchedProduct);
+		console.log('SELECTED PRODUCT', this.props.selectedProduct);
 
 				// console.log(browserHistory);
-		// browserHistory.push(`api/products/${this.props.selectedProduct.id}`)
+		browserHistory.push(`/products/${searchedProduct.id}`)
 	}
 
 	render() {
