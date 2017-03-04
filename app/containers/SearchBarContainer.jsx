@@ -1,30 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 import SearchProducts from 'APP/app/components/SearchProducts';
-import {Products} from 'APP/app/components/Products';
+import { selectProduct } from 'APP/app/action-creators/product';
+import store from '../store';
 
 export class SearchBarContainer extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { searchTerm: '' };
+		this.state = {
+			searchTerm: '',
+			searchedProduct: {}
+		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
 	}
 
 	handleInputChange(event) {
-		console.log(event.target.value);
 		this.setState({searchTerm: event.target.value});
 	}
 
 	handleSearchSubmit(event) {
 		event.preventDefault();
-		console.log(this.state.searchTerm);
-		const searchTerm = this.state.searchTerm;
 
+		const searchedProduct = this.props.products.filter((product) => {
+			return product.title.match(this.state.searchTerm);
+		});
+
+		store.dispatch(selectProduct(searchedProduct));
+		browserHistory.push(`/products/${searchedProduct[0].id}`);
 	}
 
 	render() {
@@ -40,15 +47,12 @@ export class SearchBarContainer extends Component {
 	}
 }
 
-export const mapStateToProps = state => {
-	console.log('state: ', state);
-	// return { const products = state.productList }
+export const mapStateToProps = (state) => {
+	return {
+		products: state.allProducts,
+		selectedProduct: state.selectedProduct
+	};
 };
 
-// export const mapDispatchToProps = dispatch => {
-// 	return {
 
-// 	}
-// }
-
-export default connect(mapStateToProps)(SearchProducts);
+export default connect(mapStateToProps)(SearchBarContainer);

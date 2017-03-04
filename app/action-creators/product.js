@@ -13,15 +13,15 @@ export const selectProduct = product => ({
 	selectedProduct: product
 });
 
-export const receiveAllProducts = () => {
-	return dispatch => {
-		axios.get('/api/products')
-			.then(products => {
-				dispatch(selectAllProducts(products.data));
-			})
-			.catch();
-	};
-};
+// export const receiveAllProducts = () => {
+// 	return dispatch => {
+// 		axios.get('/api/products')
+// 			.then(products => {
+// 				dispatch(selectAllProducts(products.data));
+// 			})
+// 			.catch();
+// 	};
+// };
 
 export const receiveProduct = productId => {
 	return dispatch => {
