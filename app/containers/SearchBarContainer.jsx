@@ -36,11 +36,7 @@ export class SearchBarContainer extends Component {
 		console.log('searchedProduct: ', searchedProduct);
 		store.dispatch(selectProduct(searchedProduct));
 
-		console.log('SEARCHED PRODUCT', searchedProduct);
-		console.log('SELECTED PRODUCT', this.props.selectedProduct);
-
-				// console.log(browserHistory);
-		browserHistory.push(`/products/${searchedProduct.id}`)
+		browserHistory.push(`/products/${searchedProduct[0].id}`);
 	}
 
 	render() {
