@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SingleProduct from 'APP/app/components/SingleProduct';
 import { SELECT_PRODUCT } from 'APP/app/constants'
 import { connect } from 'react-redux';
+import NavBar from '../components/NavBar';
 
 
 const mapStateToProps = state => {
@@ -34,12 +35,13 @@ export default connect(mapStateToProps)(
 
         render(){
             return (
-                    <SingleProduct
-                        {...this.state}
-                        {...this.props}
-                        handleSubmit={this.handleSubmit}
-                        handleInputChange={this.handleInputChange}
-                    />
+                <NavBar selectedProduct={this.props.selectedProduct} />
+                <SingleProduct
+                    {...this.state}
+                    {...this.props}
+                    handleSubmit={this.handleSubmit}
+                    handleInputChange={this.handleInputChange}
+                />
             )
         }
     }

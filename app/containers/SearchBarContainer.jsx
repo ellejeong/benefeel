@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 import SearchProducts from 'APP/app/components/SearchProducts';
 import Products from 'APP/app/components/Products';
@@ -32,12 +33,14 @@ export class SearchBarContainer extends Component {
 			return product.title.match(this.state.searchTerm);
 		});
 
-		console.log('searchedProduct: ', searchedProduct);
 		store.dispatch(selectProduct(searchedProduct));
+		this.setState({selectedProduct: searchedProduct})
+
+				// console.log(browserHistory);
+		// browserHistory.push(`api/products/${this.props.selectedProduct.id}`)
 	}
 
 	render() {
-
 		return (
 			<div>
 				<SearchProducts
@@ -54,10 +57,10 @@ export const mapStateToProps = (state) => {
 	console.log('state: ', state);
 
 	return {
-		products: state.allProducts
+		products: state.allProducts,
+		selectedProduct: state.selectedProduct
 	};
 };
-
 
 
 export default connect(mapStateToProps)(SearchBarContainer);
