@@ -48,8 +48,6 @@ const onProductEnter = nextState => {
 };
 
 const onCategoryEnter = nextState => {
-  console.log('NEXT STATE: ', nextState);
-  console.log(nextState.params);
   store.dispatch(receiveCategories(nextState.params.category));
 };
 
