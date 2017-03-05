@@ -5,7 +5,7 @@ import { SELECT_CATEGORY } from 'APP/app/constants';
 const initialState = [];
 
 export default function (state = initialState, action) {
-	console.log('ACTION: ', action);
+
 	switch (action.type) {
 
 		case SELECT_CATEGORY:

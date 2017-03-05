@@ -18,7 +18,6 @@ export class CategoriesContainer extends Component {
 }
 
 const mapStateToProps = state => {
-	console.log('STATE:', state);
 	return { productsInCategory: state.productsInCategory };
 };
 

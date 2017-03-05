@@ -8,7 +8,6 @@ export class Products extends Component {
   render() {
     let products;
 
-    console.log('PROPS IN PRODUCTS:', this.props);
     if (this.props.productsInCategory) {
       this.props.productsInCategory.length ? products  = this.props.productsInCategory : products = this.props.products;
     } else {

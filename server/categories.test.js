@@ -38,7 +38,6 @@ describe('Individual Category View', () => {
 		request(app)
 			.get('/api/categories/physical')
 			.then(res => {
-				console.log(res.body);
 				expect(res.body.length).to.be.equal(2);
 			});
 	});

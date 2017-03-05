@@ -18,16 +18,6 @@ export const selectCategory = products => ({
 	products: products
 })
 
-// export const receiveAllProducts = () => {
-// 	return dispatch => {
-// 		axios.get('/api/products')
-// 			.then(products => {
-// 				dispatch(selectAllProducts(products.data));
-// 			})
-// 			.catch();
-// 	};
-// };
-
 export const receiveProduct = productId => {
 	return dispatch => {
 		axios.get(`/api/products/${productId}`)
