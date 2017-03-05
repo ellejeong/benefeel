@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { SELECT_PRODUCT, SELECT_ALL_PRODUCTS } from 'APP/app/constants';
+import { SELECT_PRODUCT, SELECT_ALL_PRODUCTS, SELECT_CATEGORY } from 'APP/app/constants';
 
 export const selectAllProducts = products => ({
 	type: SELECT_ALL_PRODUCTS,
@@ -12,6 +12,11 @@ export const selectProduct = product => ({
 	type: SELECT_PRODUCT,
 	selectedProduct: product
 });
+
+export const selectCategory = products => ({
+	type: SELECT_CATEGORY,
+	products: products
+})
 
 // export const receiveAllProducts = () => {
 // 	return dispatch => {
@@ -42,7 +47,7 @@ export const receiveCategories = (category) => {
 				});
 			})
 			.then(filteredProducts => {
-				dispatch(selectAllProducts(filteredProducts));
+				dispatch(selectCategory(filteredProducts));
 			})
 			.catch(console.error());
 	};

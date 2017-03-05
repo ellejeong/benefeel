@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Categories from '../components/Categories';
-import { selectAllProducts } from '../action-creators/product';
+import { selectCategory } from '../action-creators/product';
 import store from '../store';
 
 export class CategoriesContainer extends Component {
@@ -18,7 +18,8 @@ export class CategoriesContainer extends Component {
 }
 
 const mapStateToProps = state => {
-	return { allProducts: state.allProducts };
+	console.log('STATE:', state);
+	return { productsInCategory: state.productsInCategory };
 };
 
 export default connect(mapStateToProps)(CategoriesContainer);
