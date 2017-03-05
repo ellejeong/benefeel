@@ -33,11 +33,19 @@ export const receiveProduct = productId => {
 	};
 };
 
-export const receiveCategories = category => {
+export const receiveCategories = (category) => {
 	return dispatch => {
-		axios.get(`/api/products/${category}`)
+		axios.get(`/api/products`)
 			.then(products => {
-				dispatch(selectAllProducts(products.data));
+				console.log(products.data);
+				return products.data.filter(product => {
+					console.log('product: ', product);
+					return product.category === category;
+				});
+			})
+			.then(filteredProducts => {
+				console.log('filtered products: ', filteredProducts);
+				dispatch(selectAllProducts(filteredProducts));
 			});
 	};
 };

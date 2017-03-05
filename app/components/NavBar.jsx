@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import SearchBarContainer from 'APP/app/containers/SearchBarContainer';
+import CategoriesContainer from 'APP/app/containers/CategoriesContainer';
 
 export default class NavBar extends Component {
 
@@ -20,23 +21,16 @@ export default class NavBar extends Component {
 					<a className="navbar-brand" href="#">BeneFeel</a>
 					</div>
 					<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul className="nav navbar-nav">
-							<li className="dropdown">
-								<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span className="caret"></span></a>
-								<ul className="dropdown-menu">
-									<li><a href="#">A Category</a></li>
-								</ul>
-							</li>
-						</ul>
-							<div>
-								<SearchBarContainer />
-							</div>
-						<ul className="nav navbar-nav navbar-right">
-							<li><a href="#">Login/Signup</a></li>
-							<li><a href="#">Cart</a></li>
-							<li><a href="#">Account</a></li>
-							<li><a href="#">Logout</a></li>
-						</ul>
+						<CategoriesContainer />
+					<div>
+						<SearchBarContainer />
+					</div>
+					<ul className="nav navbar-nav navbar-right">
+						<li><a href="#">Login/Signup</a></li>
+						<li><a href="#">Cart</a></li>
+						<li><a href="#">Account</a></li>
+						<li><a href="#">Logout</a></li>
+					</ul>
 					</div>
 				</div>
 				</nav>

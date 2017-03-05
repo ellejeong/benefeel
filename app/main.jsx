@@ -9,11 +9,12 @@ import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
-import { receiveProduct, selectAllProducts } from './action-creators/product';
+import { receiveProduct, selectAllProducts, receiveCategories } from './action-creators/product';
 import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
 import NavBar from './components/NavBar';
 import SingleProductContainer from './containers/SingleProductContainer';
+import CategoriesContainer from './containers/CategoriesContainer';
 
 
 
@@ -46,6 +47,12 @@ const onProductEnter = nextState => {
   store.dispatch(receiveProduct(nextState.params.productId));
 };
 
+const onCategoryEnter = nextState => {
+  console.log('NEXT STATE: ', nextState);
+  console.log(nextState.params);
+  store.dispatch(receiveCategories(nextState.params.category));
+};
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -54,6 +61,7 @@ render(
         <Route path="/products" component={Products} />
         <Route path="/Jokes" component={Jokes} />
         <Route path="/products/:productId" component={SingleProductContainer} onEnter={onProductEnter} />
+        <Route path="/categories/:category" component={Products} onEnter={onCategoryEnter} />
       </Route>
     </Router>
   </Provider>,
