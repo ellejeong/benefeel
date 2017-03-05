@@ -32,3 +32,12 @@ export const receiveProduct = productId => {
 			.catch(console.error());
 	};
 };
+
+export const receiveCategories = category => {
+	return dispatch => {
+		axios.get(`/api/products/${category}`)
+			.then(products => {
+				dispatch(selectAllProducts(products.data));
+			});
+	};
+};
