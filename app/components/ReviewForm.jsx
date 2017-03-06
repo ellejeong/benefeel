@@ -10,15 +10,17 @@ export default function (props) {
           <div>
             <h3>Leave a Review</h3>
             <form onSubmit={props.handleSubmit}>
+              <input name="title"
+                    className="form-control"
+                    placeholder="Title"></input>
               <textarea
-                onChange={props.handleInputChange}
-                value={props.searchTerm}
+                name="reviewText"
                 className="form-control"
                 placeholder="Wow! This product is great.."
               ></textarea>
             <h5>Rating:
               <select className="custom-select"
-                      onChange={props.handleInputChange}>
+                      name="rating">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
