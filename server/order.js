@@ -37,6 +37,7 @@ module.exports = require('express').Router()
    })
    //Get Cart of user by user id
   .get('/cart/:userid', (req, res, next)=>{
+    console.log('WE GOT TO THE USERS CART')
     res.status(200).json(req.cart);
   })
   //post: add item to cart relying on router.param for 'cart'

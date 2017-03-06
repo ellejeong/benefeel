@@ -23,7 +23,6 @@ componentDidMount () {
   //       lineItemList: lineItems
   //   })
   //   console.log('LINEITEMLIST', this.state.lineItemList);
-
   // })
 }
 

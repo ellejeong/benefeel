@@ -13,19 +13,31 @@ export const removeFromCart = product => ({
     product: product
 })
 
-export const loadCart = cart => ({
+export const loadCart = lineItems => ({
     type: LOAD_CART,
-    cart: cart
+    cart: lineItems
 })
 
 export const receiveCart = (auth) => {
     console.log('AUTH', auth)
     return dispatch => {
-        axios.get(`/api/cart/${auth.id}`)
+        axios.get(`/api/orders/cart/${auth.id}`)
         .then(lineItems => {
             console.log('LINEITEMLIST', lineItems);
             dispatch(loadCart(lineItems.data))
         })
         .catch(console.error())
     };
+      // axios.get(`/api/orders/order/${this.orderid}`)
+        // .then(res => {
+        //     console.log('RES DATA', res.data);
+        //   return res.data;
+        // })
+        // .then(lineItems => {
+        //   this.setState({
+        //       lineItemList: lineItems
+        //   })
+        //   console.log('LINEITEMLIST', this.state.lineItemList);
+
+        // })
 }
