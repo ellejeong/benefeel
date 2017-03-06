@@ -20,15 +20,18 @@ export default connect(mapStateToProps)(
 
             this.state = {
                 quantity: 1,
-                reviews: {}
             };
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleInputChange = this.handleInputChange.bind(this);
-            this.loadReviews=this.loadReviews.bind(this);
+
         }
 
-        loadReviews(){
-
+        setProductReviews(){
+          let filteredReviews=this.props.allReviews.filter((review)=>{
+            return this.props.selectedProduct.id === review.product_id
+          })
+          console.log("filteredReviews" ,filteredReviews);
+          return filteredReviews
         }
 
         handleInputChange(evt) {
@@ -42,6 +45,7 @@ export default connect(mapStateToProps)(
         }
 
         render(){
+            let reviews= this.setProductReviews();
             return (
                 <div className="container flexbox-container">
                     <SingleProduct
@@ -52,7 +56,7 @@ export default connect(mapStateToProps)(
                     />
 
                   <Review
-                    reviews={this.props.allReviews}
+                    reviews={reviews}
                   />
 
                 </div>
