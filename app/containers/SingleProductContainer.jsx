@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SingleProduct from 'APP/app/components/SingleProduct';
+import ReviewForm from 'APP/app/components/ReviewForm'
 import Review from 'APP/app/components/Review';
 import { SELECT_PRODUCT } from 'APP/app/constants'
 import { connect } from 'react-redux';
@@ -55,9 +56,12 @@ export default connect(mapStateToProps)(
                         handleInputChange={this.handleInputChange}
                     />
                   {this.props.selectedProduct ?
-                    <Review
-                      reviews={reviews}
-                    /> : null }
+                    <div>
+                      <ReviewForm/>
+                      <Review
+                        reviews={reviews}
+                      />
+                    </div>: null }
 
                 </div>
             )
