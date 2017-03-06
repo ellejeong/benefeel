@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import {ADD_TO_CART, REMOVE_FROM_CART} from 'APP/app/constants';
+import {LOAD_CART, ADD_TO_CART, REMOVE_FROM_CART} from 'APP/app/constants';
 
 export const addToCart = product => ({
     type: ADD_TO_CART,
@@ -13,16 +13,19 @@ export const removeFromCart = product => ({
     product: product
 })
 
-export const receiveCart = () => ({
-    axios.get(`/api/orders/order/${this.orderid}`)
-    .then(res => {
-        console.log('RES DATA', res.data);
-        return res.data;
-    })
-    .then(lineItems => {
-        this.setState({
-            lineItemList: lineItems
-        })
-        console.log('LINEITEMLIST', this.state.lineItemList);
-    })
+export const loadCart = cart => ({
+    type: LOAD_CART,
+    cart: cart
 })
+
+export const receiveCart = (auth) => {
+    console.log('AUTH', auth)
+    return dispatch => {
+        axios.get(`/api/cart/${auth.id}`)
+        .then(lineItems => {
+            console.log('LINEITEMLIST', lineItems);
+            dispatch(loadCart(lineItems.data))
+        })
+        .catch(console.error())
+    };
+}

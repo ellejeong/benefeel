@@ -42,7 +42,7 @@ export class NavBar extends Component {
 					</div>
 					<ul className="nav navbar-nav navbar-right">
 						<li><a href="#">Login/Signup</a></li>
-						<li><a href="#">Cart</a></li>
+						<li><Link to="/cart">Cart</Link></li>
 						<li><a href="#">Account</a></li>
 						<li><a href="#">Logout</a></li>
 					</ul>

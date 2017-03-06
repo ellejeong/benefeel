@@ -1,21 +1,25 @@
-// import React from 'react';
+import React from 'react';
 
-// import {ADD_TO_CART, REMOVE_FROM_CART} from 'APP/app/constants';
+import {ADD_TO_CART, REMOVE_FROM_CART, LOAD_CART} from 'APP/app/constants';
 
-// const initialState = [];
+const initialState = [];
 
-// export default function allProducts(state = initialState, action) {
+export default function (state = initialState, action) {
+console.log('ACTION', action)
+	switch (action.type) {
 
-// 	switch (action.type) {
+		case ADD_TO_CART:
+			return action.lineItem;
 
-// 		case ADD_TO_CART:
-// 			return action.products;
+        case REMOVE_FROM_CART:
+			return action.lineItem;
 
-//         case REMOVE_FROM_CART:
-// 			return action.products;
+        case LOAD_CART:
+            console.log('LOAD CART ACTION', action)
+			return action.lineItem;
 
-// 		default:
-// 			return state;
+		default:
+			return state;
 
-// 	}
-// }
+	}
+}

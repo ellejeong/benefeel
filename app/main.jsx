@@ -54,8 +54,11 @@ const onCategoryEnter = nextState => {
 };
 
 const onCartEnter = nextState => {
-  console.log(nextState.params)
-  store.dispatch(receiveCart(nextState.params.orderId));
+  let storeState = store.getState();
+  if (storeState.auth !== '' && storeState.auth !== null){
+  console.log('STORE STATE:', store.getState())
+  store.dispatch(receiveCart(storeState.auth));
+  }
 }
 
 render(
