@@ -20,4 +20,15 @@ module.exports = require('express').Router()
 			}
 		})
 			.then(reviews => res.json(reviews))
-			.catch(next));
+			.catch(next))
+		.post('/:id/reviews', (req, res, next) => {
+			Review.create({
+					title: req.body.title,
+					rating: +req.body.rating,
+					description: req.body.description,
+					product_id: +req.params.id,
+					author_id: +req.body.author_id
+			})
+			.then(review => res.status(201).json(review))
+			.catch(next)
+		})
