@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { SELECT_PRODUCT, SELECT_ALL_PRODUCTS, SELECT_CATEGORY } from 'APP/app/constants';
+import { SELECT_PRODUCT, SELECT_ALL_PRODUCTS, SELECT_CATEGORY, SELECT_ALL_REVIEWS } from 'APP/app/constants';
 
 export const selectAllProducts = products => ({
 	type: SELECT_ALL_PRODUCTS,
@@ -27,6 +27,12 @@ export const receiveProduct = productId => {
 			.catch(console.error());
 	};
 };
+
+export const selectAllReviews = allReviews => ({
+	type: SELECT_ALL_REVIEWS,
+	allReviews: allReviews
+});
+
 
 export const receiveCategories = (category) => {
 	return dispatch => {

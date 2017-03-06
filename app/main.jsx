@@ -10,7 +10,7 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 
-import { receiveProduct, selectAllProducts, receiveCategories } from './action-creators/product';
+import { receiveProduct, selectAllProducts, receiveCategories, selectAllReviews } from './action-creators/product';
 import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
 import SingleProductContainer from './containers/SingleProductContainer';
@@ -40,8 +40,11 @@ const onAppEnter = () => {
   axios.get('/api/products')
     .then(products => {
       store.dispatch(selectAllProducts(products.data));
-    })
-    .catch();
+    }).then(()=>{
+      return axios.get('/api/reviews')
+    }).then(reviews => {
+      store.dispatch(selectAllReviews(reviews.data));
+    }).catch();
 };
 
 const onProductEnter = nextState => {
