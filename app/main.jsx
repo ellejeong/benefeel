@@ -9,13 +9,14 @@ import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
+
 import { receiveProduct, selectAllProducts, receiveCategories } from './action-creators/product';
 import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
-import NavBar from './components/NavBar';
 import SingleProductContainer from './containers/SingleProductContainer';
-import CategoriesContainer from './containers/CategoriesContainer';
-
+import CategoriesContiner from './containers/CategoriesContainer';
+import NavBar from './components/NavBar';
+import Cart from './components/Cart';
 
 
 const ExampleApp = connect(
@@ -60,6 +61,7 @@ render(
         <Route path="/Jokes" component={Jokes} />
         <Route path="/products/:productId" component={SingleProductContainer} onEnter={onProductEnter} />
         <Route path="/categories/:category" component={Products} onEnter={onCategoryEnter} />
+        <Route path="/cart" component={Cart} />
       </Route>
     </Router>
   </Provider>,
