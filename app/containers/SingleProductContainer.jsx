@@ -54,10 +54,10 @@ export default connect(mapStateToProps)(
                         handleSubmit={this.handleSubmit}
                         handleInputChange={this.handleInputChange}
                     />
-
-                  <Review
-                    reviews={reviews}
-                  />
+                  {this.props.selectedProduct ?
+                    <Review
+                      reviews={reviews}
+                    /> : null }
 
                 </div>
             )

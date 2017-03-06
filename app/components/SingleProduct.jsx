@@ -4,7 +4,7 @@ import SearchBarContainer from '../containers/SearchBarContainer'
 
 export default function (props) {
 
-    if(!props.selectedProduct) return null;
+    if(!props.selectedProduct) return <div><h3>Sorry! We don't have that product in our store!</h3></div>;
     return (
         <div>
           <div>
