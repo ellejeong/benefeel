@@ -12,18 +12,19 @@ constructor() {
 
 
 componentDidMount () {
-  axios.get(`/api/orders/order/${this.orderid}`)
-  .then(res => {
-      console.log('RES DATA', res.data);
-    return res.data;
-  })
-  .then(lineItems => {
-      console.log('LINEITEMLIST', this.state.lineItem);
-    this.setState({
-        lineItemList: lineItems
-    })
+  //this can be put in an onEnter
+  // axios.get(`/api/orders/order/${this.orderid}`)
+  // .then(res => {
+  //     console.log('RES DATA', res.data);
+  //   return res.data;
+  // })
+  // .then(lineItems => {
+  //   this.setState({
+  //       lineItemList: lineItems
+  //   })
+  //   console.log('LINEITEMLIST', this.state.lineItemList);
 
-  }) 
+  // })
 }
 
 
@@ -41,7 +42,7 @@ componentDidMount () {
         <div className="flexContainer2">
         {lineItemList.map(lineItem => {
             return (<div key={lineItem.id} className="flexContainer1 flexItem cartItem">
-            
+
             <div className="flexItem">
             <Link to={`/products/${lineItem.product_id}`}>
             <img src={defaultImg} />
@@ -58,7 +59,7 @@ componentDidMount () {
             </div>
 
 
-             
+
                 <div className="cartItemPrice flexItem">
                 <h6>${lineItem.price}.00</h6>
                 </div>

@@ -11,6 +11,7 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 
 import { receiveProduct, selectAllProducts, receiveCategories } from './action-creators/product';
+import { receiveCart } from './action-creators/cart';
 import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
 import SingleProductContainer from './containers/SingleProductContainer';
@@ -52,6 +53,11 @@ const onCategoryEnter = nextState => {
   store.dispatch(receiveCategories(nextState.params.category));
 };
 
+const onCartEnter = nextState => {
+  console.log(nextState.params)
+  store.dispatch(receiveCart(nextState.params.orderId));
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -61,7 +67,7 @@ render(
         <Route path="/Jokes" component={Jokes} />
         <Route path="/products/:productId" component={SingleProductContainer} onEnter={onProductEnter} />
         <Route path="/categories/:category" component={Products} onEnter={onCategoryEnter} />
-        <Route path="/cart" component={Cart} />
+        <Route path="/cart" component={Cart} onEnter={onCartEnter} />
       </Route>
     </Router>
   </Provider>,

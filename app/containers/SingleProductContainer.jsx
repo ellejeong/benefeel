@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SingleProduct from 'APP/app/components/SingleProduct';
 import { SELECT_PRODUCT } from 'APP/app/constants'
 import { connect } from 'react-redux';
-
+import axios from 'axios';
 
 const mapStateToProps = state => {
   return {
@@ -23,12 +23,12 @@ export default connect(mapStateToProps)(
         }
 
         handleInputChange(evt) {
-            console.log(this.state.quantity)
             this.setState({quantity: evt.target.value})
         }
 
         handleSubmit(evt) {
             evt.preventDefault();
+
             console.log('submit to cart quantity:', this.state.quantity, 'ID:', this.props.selectedProduct.id)
         }
 
