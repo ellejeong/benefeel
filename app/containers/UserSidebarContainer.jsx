@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
-import Sidebar from '../components/Sidebar';
 import store from '../store';
 import { connect } from 'react-redux';
 import UserSidebar from '../components/UserSidebar';
 
-export class UserSidebarContainer extends Component {
-  constructor(props) {
-    super(props);
+export default class UserSidebarContainer extends Component {
+  constructor() {
+    super();
   }
 
 
-  render(props) {
+  render() {
     return (
+    <div>
+    <h4>User Navigation</h4>
       <UserSidebar />
+    </div>
     );
   }
 
