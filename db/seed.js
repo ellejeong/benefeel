@@ -1,7 +1,7 @@
 const db = require('APP/db')
 
 const seedUsers = () => db.Promise.map([
-  {name: 'so many', email: 'god@example.com', password: '1234'},
+  {name: 'God', email: 'god@example.com', password: '1234'},
   {name: 'Barack Obama', email: 'barack@example.gov', password: '1234'},
 ], user => db.model('users').create(user))
 
@@ -14,8 +14,9 @@ const seedProducts = () => db.Promise.map([
 ], product => db.model('products').create(product))
 
 const seedReviews = () => db.Promise.map([
-  {title: 'Happiness is wonderful!', rating: 5, description: 'This was the best purchase of MY LIFE!', product_id: 1},
-  {title: 'It was good!', rating: 4, description: 'This was a handy purchase for my down times!', product_id: 1}
+  {title: 'Happiness is wonderful!', rating: 5, description: 'This was the best purchase of MY LIFE!', product_id: 1, author_id:1 },
+  {title: 'It was good!', rating: 4, description: 'This was a handy purchase for my down times!', product_id: 1, author_id:1},
+  {title: 'Long REview', rating: 4, description: 'This was a handy purchase for my down times! fjekwlfjew jflwjflewfjewl jfklwfjewklf ewl fjkwljfewl fkwl fjkwel fjewklfjlw;j fjkewlajfiewojfwa fjkewla;f ewioa fiewjof jwio fwjl fjwoi fjwieojfiowjfioewjfewoi ', product_id: 1, author_id:1}
 ], review => db.model('reviews').create(review))
 
 const seedOrders = () => db.Promise.map([
