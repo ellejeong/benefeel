@@ -1,4 +1,6 @@
 import React from 'react';
+import store from '../store';
+import SearchBarContainer from '../containers/SearchBarContainer'
 
 export default function (props) {
 
