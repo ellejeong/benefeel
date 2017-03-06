@@ -7,16 +7,19 @@ import axios from 'axios';
 
 import store from './store'
 import Jokes from './components/Jokes'
-import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 
 import { receiveProduct, selectAllProducts, receiveCategories } from './action-creators/product';
 import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
+import Login from './components/Login';
 import SingleProductContainer from './containers/SingleProductContainer';
 import CategoriesContiner from './containers/CategoriesContainer';
+import OrderHistoryContainer from './containers/OrderHistoryContainer';
 import NavBar from './components/NavBar';
 import Cart from './components/Cart';
+import UserPage from './components/UserPage';
+import UserProfile from './components/UserProfile'
 
 
 const ExampleApp = connect(
@@ -58,9 +61,11 @@ render(
       <Route path="/" component={ExampleApp} onEnter={onAppEnter}>
         <IndexRedirect to="/products" />
         <Route path="/products" component={Products} />
-        <Route path="/Jokes" component={Jokes} />
         <Route path="/products/:productId" component={SingleProductContainer} onEnter={onProductEnter} />
         <Route path="/categories/:category" component={Products} onEnter={onCategoryEnter} />
+        <Route path="/users/:id" component={UserPage} />
+        <Route path="/orderhistory" component={OrderHistoryContainer} />
+        <Route path="/userprofile" component={UserProfile} />
         <Route path="/cart" component={Cart} />
       </Route>
     </Router>

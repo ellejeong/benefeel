@@ -41,9 +41,9 @@ export class NavBar extends Component {
 						<SearchBarContainer />
 					</div>
 					<ul className="nav navbar-nav navbar-right">
-						<li><a href="#">Login/Signup</a></li>
-						<li><a href="#">Cart</a></li>
-						<li><a href="#">Account</a></li>
+						<li><a href="/">Login/Signup</a></li>
+						<li><a href="/cart">Cart</a></li>
+						<li><a href="/users/profile">Account</a></li>
 						<li><a href="#">Logout</a></li>
 					</ul>
 					</div>
