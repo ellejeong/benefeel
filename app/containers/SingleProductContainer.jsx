@@ -34,15 +34,19 @@ export default connect(mapStateToProps)(
 
         render(){
             return (
+                <div className="container flexbox-container">
                     <SingleProduct
                         {...this.state}
                         {...this.props}
                         handleSubmit={this.handleSubmit}
                         handleInputChange={this.handleInputChange}
                     />
+
+                  <Review
+                  />
+
+                </div>
             )
         }
     }
 );
-
-
