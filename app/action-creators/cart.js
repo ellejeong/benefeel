@@ -22,10 +22,11 @@ export const receiveCart = (auth) => {
     console.log('AUTH', auth)
     return dispatch => {
         axios.get(`/api/orders/cart/${auth.id}`)
-        .then(lineItems => {
-            console.log('LINEITEMLIST', lineItems);
-            dispatch(loadCart(lineItems.data))
+        .then(order => {
+            console.log('ORDER', order);
+            dispatch(loadCart(order.data))
         })
+        .then()
         .catch(console.error())
     };
       // axios.get(`/api/orders/order/${this.orderid}`)

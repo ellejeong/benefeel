@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router';
+import { connect } from 'react-redux';
 
 
 export default class Cart extends Component {
-constructor() {
-  super();
-  this.state = { lineItemList: [] };
-  this.orderid = 1;
-}
+// constructor() {
+//   super();
+//   // this.state = { lineItemList: [] };
+//   // this.orderid = 1;
+// }
 
 
-componentDidMount () {
+// componentDidMount () {
   //this can be put in an onEnter
   // axios.get(`/api/orders/order/${this.orderid}`)
   // .then(res => {
@@ -24,7 +25,7 @@ componentDidMount () {
   //   })
   //   console.log('LINEITEMLIST', this.state.lineItemList);
   // })
-}
+// }
 
 
   render () {
@@ -32,7 +33,7 @@ componentDidMount () {
 
     // IMAGE SOURCE:
     const defaultImg = 'https://s-media-cache-ak0.pinimg.com/236x/00/c8/78/00c878efe94e7ef87c4eec68b612de6f.jpg'
-
+    console.log('PROPS', props)
     return (
       <div>
         <h1>Shopping Bag</h1>
