@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {SELECT_ALL_REVIEWS} from 'APP/app/constants';
+import {SELECT_ALL_REVIEWS, ADD_REVIEW_TO_PRODUCT} from 'APP/app/constants';
 
 const initialState = [];
 
