@@ -8,7 +8,7 @@ import axios from 'axios';
 import store from './store'
 import WhoAmI from './components/WhoAmI'
 
-import { receiveProduct, selectAllProducts, receiveCategories } from './action-creators/product';
+import { receiveProduct, selectAllProducts, receiveCategories, selectAllReviews } from './action-creators/product';
 import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
 import Login from './components/Login';
@@ -42,8 +42,11 @@ const onAppEnter = () => {
   axios.get('/api/products')
     .then(products => {
       store.dispatch(selectAllProducts(products.data));
-    })
-    .catch();
+    }).then(()=>{
+      return axios.get('/api/reviews')
+    }).then(reviews => {
+      store.dispatch(selectAllReviews(reviews.data));
+    }).catch();
 };
 
 const onProductEnter = nextState => {

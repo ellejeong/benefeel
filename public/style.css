@@ -23,6 +23,12 @@ h3 {
     align-items: center;
 }
 
+.flexReviews{
+  flex-flow:column wrap;
+  align-items: stretch;
+}
+
+
 .flexContainer1 {
     display: flex;
     flex-flow: row wrap;
@@ -42,6 +48,11 @@ h3 {
 
 .flexItem {
     text-align: center;
+}
+
+.flexItemReview{
+  text-align: left;
+  border-bottom: 2px solid lightgray;
 }
 
 .cartItem {
@@ -64,4 +75,5 @@ h3 {
     border-spacing: 2px;
     border-color: grey;
 }
+
 

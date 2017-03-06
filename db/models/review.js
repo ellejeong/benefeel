@@ -2,6 +2,7 @@
 
 const Sequelize = require('sequelize')
 const db = require('APP/db')
+const moment= require('moment');
 
 const Review = db.define('reviews', {
   title: Sequelize.STRING,
@@ -11,6 +12,15 @@ const Review = db.define('reviews', {
       validate: {min: 0, max: 5}
   },
   description: Sequelize.TEXT
+},{
+  getterMethods:{
+    createdAt: function() {
+      return moment(this.getDataValue('created_at')).format('MM-DD-YYYY');
+    },
+    updatedAt: function() {
+      return moment(this.getDataValue('updated_at')).format('MM-DD-YYYY');
+    }
+  }
 });
 
 
