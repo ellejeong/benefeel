@@ -10,13 +10,10 @@ const rootReducer = combineReducers({
   auth: require('./auth').default,
   selectedProduct,
   allProducts,
-<<<<<<< HEAD
-  productsInCategory,
-  cart
-=======
+  cart,
   allReviews,
   productsInCategory
->>>>>>> master
+
 });
 
 export default rootReducer
