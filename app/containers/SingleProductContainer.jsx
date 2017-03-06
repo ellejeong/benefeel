@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import SingleProduct from 'APP/app/components/SingleProduct';
+import Review from 'APP/app/components/Review';
 import { SELECT_PRODUCT } from 'APP/app/constants'
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 
 const mapStateToProps = state => {
   return {
-    selectedProduct: state.selectedProduct
+    selectedProduct: state.selectedProduct,
+    allReviews: state.allReviews
   };
 };
 
@@ -16,10 +19,16 @@ export default connect(mapStateToProps)(
             super();
 
             this.state = {
-                quantity: 1
+                quantity: 1,
+                reviews: {}
             };
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleInputChange = this.handleInputChange.bind(this);
+            this.loadReviews=this.loadReviews.bind(this);
+        }
+
+        loadReviews(){
+
         }
 
         handleInputChange(evt) {
@@ -43,6 +52,7 @@ export default connect(mapStateToProps)(
                     />
 
                   <Review
+                    reviews={this.props.allReviews}
                   />
 
                 </div>
