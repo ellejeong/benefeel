@@ -29,7 +29,7 @@ export class Products extends Component {
               <Link to={`/products/${product.id}`}>
                 <img src={defaultImg} />
                 <h2>{product.title}</h2>
-                <h3>{product.price}</h3>
+                <h3>${product.price}.00</h3>
               </Link>
             </div>);
 

@@ -36,6 +36,7 @@ module.exports = require('express').Router()
     }).catch(next)
    })
    //Get Cart of user by user id
+   //use for unauth users ?
   .get('/cart/:userid', (req, res, next)=>{
     res.status(200).json(req.cart);
   })
@@ -45,29 +46,29 @@ module.exports = require('express').Router()
   //need product in req.body
   //need quantity in req.body
   .post('/cart/:userid/add', (req, res, next) => {
-
-    console.log('REQBODYYYY', req.body);
-    console.log("productid body", req.body.productId);
-    console.log("quantity body", req.body.quantity )
+    // console.log('REQBODYYYY', req.body);
+    // console.log("productid body", req.body.productId);
+    // console.log("quantity body", req.body.quantity )
 
     let productId = +req.body.productId
     let quantity = +req.body.quantity
     let cart = req.cart
     let lineitem;
 
-    console.log('PRODUCTIDDDD BEFORE', productId);
-
     Product.findById(productId)
     .then(product => {
       //console.log('PRODUCTIDDDD AFTERRRRRRR', product);
-      return LineItem.create({
-        name: product.title,
-        price: product.price,
-        quantity: quantity
+      return LineItem.findOrCreate({ 
+        where: {
+          name: product.title,
+          price: product.price,
+          quantity: quantity
+        }
       })
     })
   .then(createdLineItem => {
-   // console.log("createdLineItem", createdLineItem)
+  // console.log("createdLineItem", createdLineItem)
+  //all associations we are connecting below
         lineitem=createdLineItem
         return lineitem.setProduct(productId)
     })
