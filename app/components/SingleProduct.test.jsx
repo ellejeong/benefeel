@@ -1,11 +1,8 @@
-import React from 'react'
-import chai, {expect} from 'chai'
-chai.use(require('chai-enzyme')())
-import {shallow} from 'enzyme'
-import {spy} from 'sinon'
-chai.use(require('sinon-chai'))
-
-import SingleProduct from './SingleProduct'
+import React from 'react';
+import chai, {expect} from 'chai';
+chai.use(require('chai-enzyme')());
+import {shallow} from 'enzyme';
+import SingleProduct from './SingleProduct';
 
 describe('<SingleProduct />', () => {
   const selectedProduct = {
@@ -40,7 +37,7 @@ describe('<SingleProduct />', () => {
         expect(wrapper.find('select')).to.have.length(1);
     });
 
-    it('shows reviews relating to the single product');
+    // it('shows reviews relating to the single product');
 
 
 })
