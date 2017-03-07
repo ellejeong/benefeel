@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 import {login} from '../reducers/auth';
 //import {User} from '../redux/users';
 import store from '../store';
@@ -88,8 +88,7 @@ class UserLogin extends React.Component {
 	console.log(event);
     //console.log(`${message} isn't implemented yet`);
     // console.log(this.props)
-
-    store.dispatch(login(event.target.username.value, event.target.password.value));
+	this.props.login(event.target.username.value, event.target.password.value)
   }
 }
 
