@@ -8,9 +8,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import store from '../store'
 
-
-/*Write now author id is hardcoded! FIX WHEN DONE!!!*/
-
 const mapStateToProps = state => {
   return {
     selectedProduct: state.selectedProduct,
@@ -59,7 +56,7 @@ export default connect(mapStateToProps)(
             let title= evt.target.title.value
             let rating=  evt.target.rating.value
             let description=  evt.target.reviewText.value
-            let author_id= 2
+            let author_id= this.props.user.id
             let product_id= this.props.selectedProduct.id
 
             store.dispatch(addReview({
