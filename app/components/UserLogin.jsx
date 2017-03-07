@@ -14,8 +14,7 @@ class UserLogin extends React.Component {
   }
 
   render() {
-	//   console.log(this.props);
-    const message = 'Login'// this.props;
+    const message = 'Login';
     return (
       <div className="signin-container">
         <div className="buffer local">
