@@ -119,6 +119,24 @@ h2 {
   border-bottom: 2px solid lightgray;
 }
 
+.flexOrders{
+  flex-flow: column wrap;
+  align-items: stretch;
+  text-align:left;
+}
+
+.flexItemOrder{
+  background-color:red
+  padding: 20px;
+  margin:10px;
+  border-top: 2px solid lightgray;
+  font-size: 1.5em;
+}
+
+.flexItemOrder h3, p{
+  text-align:left;
+}
+
 .cartItem {
     color: red;
     border-bottom: 2px solid gray;
