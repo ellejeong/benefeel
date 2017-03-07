@@ -15,7 +15,7 @@ class UserLogin extends React.Component {
 
   render() {
 	//   console.log(this.props);
-    const { message } = 'Login'// this.props;
+    const message = 'Login'// this.props;
     return (
       <div className="signin-container">
         <div className="buffer local">
@@ -83,11 +83,7 @@ class UserLogin extends React.Component {
   }
 
   onLoginSubmit(event) {
-    // const { message, setUser} = this.props;
     event.preventDefault();
-	console.log(event);
-    //console.log(`${message} isn't implemented yet`);
-    // console.log(this.props)
 	this.props.login(event.target.username.value, event.target.password.value)
   }
 }
