@@ -37,11 +37,10 @@ export class Cart extends Component {
     return (
       <div>
         <h1>Your Shopping Bag</h1>
-
-
         <div className="flexContainer2">
-        {this.props.cart && this.props.cart.map(lineItem => {
-            return (<div key={lineItem.id} className="flexContainer1 flexItem cartItem">
+        {this.props.cart.lineItems && this.props.cart.lineItems.map(lineItem => {
+            return (
+            <div key={lineItem.id} className="flexContainer1 flexItem cartItem">
 
             <div className="flexItem">
             <Link to={`/products/${lineItem.product_id}`}>
@@ -69,11 +68,15 @@ export class Cart extends Component {
                 <div className="cartItemTotal flexItem">
                 <h6>Total: ${lineItem.itemTotal}.00</h6>
                 </div>
-            </div>)
+            </div>
+            )
           })}
 
         </div>
-
+        <div>
+          <h2>Subtotal: ${this.props.cart.subtotal}.00</h2>
+          <button>Checkout</button>
+        </div>
       </div>
 
     )
