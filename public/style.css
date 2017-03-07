@@ -41,6 +41,23 @@ h2 {
     text-transform: uppercase;
     letter-spacing: .25em; }
 
+.login{
+  margin-bottom: 20px;
+}
+
+#home{
+  margin:auto;
+  padding: 30px;
+  width:100%;
+  background-color:mintcream;
+  text-align:center;
+  font-size: 3em;
+}
+
+#home img{
+  margin:auto;
+}
+
 .flexContainer {
     /*display: flex;
     justify-content: flex-start;*/
