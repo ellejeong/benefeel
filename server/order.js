@@ -38,9 +38,18 @@ module.exports = require('express').Router()
    //Get Cart of user by user id
    //use for unauth users ?
   .get('/cart/:userid', (req, res, next)=>{
-     req.cart.getLineItems()
-      .then((lineItems)=>{
-        res.status(200).json(lineItems);
+    var cartTotal;
+    req.cart.subTotal
+    .then(total => {
+      cartTotal = total;
+      return req.cart.getLineItems()
+    })
+    .then((lineItems)=>{
+      res.status(200).json({
+        lineItems: lineItems,
+        order: req.cart, //we might be able to delete this
+        subtotal: cartTotal
+      });
     }).catch(next)
     // res.status(200).json(req.cart);
   })
