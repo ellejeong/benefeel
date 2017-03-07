@@ -12,8 +12,7 @@ export default props => {
     <sidebar>
       <section>
         <h4 className="menu-item">
-        {console.log(props)}
-          <Link to={'userprofile'}>Profile</Link>
+          <Link to={'/userprofile'}>Profile</Link>
         </h4>
       </section>
       <section>

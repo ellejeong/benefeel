@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import { browserHistory } from 'react-router';
-import {login} from '../reducers/auth';
+import {login, whoami} from '../reducers/auth';
 //import {User} from '../redux/users';
 import store from '../store';
+import Login from './Login';
+import WhoAmI from './WhoAmI';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -18,26 +20,7 @@ class UserLogin extends React.Component {
     return (
       <div className="signin-container">
         <div className="buffer local">
-          <form onSubmit={this.onLoginSubmit}>
-            <div className="form-group">
-              <label>username</label>
-              <input
-                name="username"
-                className="form-control"
-                required
-              />
-            </div>
-            <div className="form-group">
-                <label>password</label>
-                <input
-                  name="password"
-                  type="password"
-                  className="form-control"
-                  required
-                />
-            </div>
-            <button type="submit" className="btn btn-block btn-primary">{message}</button>
-          </form>
+          {(this.props.user === "" || this.props.user === null) ? <WhoAmI /> : <Login />}
         </div>
         <div className="or buffer">
           <div className="back-line">
@@ -90,6 +73,12 @@ class UserLogin extends React.Component {
 /* -----------------    CONTAINER     ------------------ */
 
 export default connect (
-  state => ({}),
-  {login},
+  mapStateToProps,
+  {login, whoami},
 ) (UserLogin)
+
+const mapStateToProps = state => {
+	return {
+		user: state.auth
+	}
+}

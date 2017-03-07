@@ -68,6 +68,13 @@ const onCartEnter = nextState => {
   }
 }
 
+const onDashboardEnter = nextState => {
+  let storeState = store.getState();
+  if (storeState.auth === '' || storeState.auth === null){
+    console.log('Please login to view this page!');
+  }
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -77,11 +84,12 @@ render(
         <Route path="/products/:productId" component={SingleProductContainer} onEnter={onProductEnter} />
         <Route path="/categories/:category" component={Products} onEnter={onCategoryEnter} />
         <Route path="/cart" component={Cart} onEnter={onCartEnter} />
-        <Route path="/users/:id" component={UserPage} />
         <Route path="/orderhistory" component={OrderHistoryContainer} />
         <Route path="/userprofile" component={UserProfile} />
         <Route path="/cart" component={Cart} />
         <Route path="/login" component={UserLogin} />
+        <Route path="/dashboard" component={UserPage} onEnter={onDashboardEnter} />
+
 
 
       </Route>

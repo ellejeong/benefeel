@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {browserHistory} from 'react-router';
 
 const reducer = (state=null, action) => {
   console.log('action:', action);
@@ -33,7 +34,7 @@ export const whoami = () =>
     axios.get('/api/auth/whoami')
       .then(response => {
         const user = response.data
-        dispatch(authenticated(user))
+        dispatch(authenticated(user));
       })
       .catch(failed => dispatch(authenticated(null)))
 
