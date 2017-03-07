@@ -8,7 +8,8 @@ const Product = db.define('products', {
   category: Sequelize.ENUM('mental', 'physical', 'thoughts', 'themes'),
   price: Sequelize.INTEGER,
   description: Sequelize.TEXT,
-  inventory: Sequelize.INTEGER
+  inventory: Sequelize.INTEGER,
+  imageURL: Sequelize.TEXT
 });
 
 

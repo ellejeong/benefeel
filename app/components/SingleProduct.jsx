@@ -9,6 +9,7 @@ export default function (props) {
         <div>
           <div>
             <h1>{props.selectedProduct.title}</h1>
+            <img src={props.selectedProduct.imageURL}></img>
           </div>
           <div>
             <h2>Product Description:</h2>

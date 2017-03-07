@@ -22,6 +22,8 @@ import Cart from './components/Cart';
 import UserPage from './components/UserPage';
 import UserProfile from './components/UserProfile'
 import UserLogin from './components/UserLogin'
+import Home from './components/Home'
+
 
 
 const ExampleApp = connect(
@@ -79,7 +81,8 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={ExampleApp} onEnter={onAppEnter}>
-        <IndexRedirect to="/products" />
+        <IndexRedirect to="/home" />
+        <Route path="/home" component={Home} />
         <Route path="/products" component={Products} />
         <Route path="/products/:productId" component={SingleProductContainer} onEnter={onProductEnter} />
         <Route path="/categories/:category" component={Products} onEnter={onCategoryEnter} />

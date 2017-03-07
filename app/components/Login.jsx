@@ -2,7 +2,7 @@ import React from 'react'
 import {browserHistory} from 'react-router';
 
 export const Login = ({ login }) => (
-  <form onSubmit={evt => {
+  <form className="login" onSubmit={evt => {
     evt.preventDefault()
     login(evt.target.username.value, evt.target.password.value);
      browserHistory.push('/dashboard');

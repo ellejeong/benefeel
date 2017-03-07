@@ -4,7 +4,7 @@ import store from '../store';
 
 export default function (props) {
 
-    //if(!props.loggedInUser) return null;
+    if(!props.user) return null;
     return (
         <div>
           <div>
