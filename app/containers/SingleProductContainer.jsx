@@ -75,7 +75,7 @@ export default connect(mapStateToProps)(
         render(){
             let reviews= this.setProductReviews();
             return (
-                <div className="container flexbox-container">
+                <div className="container flexboxContainer">
                     <SingleProduct
                         {...this.state}
                         {...this.props}

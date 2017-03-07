@@ -14,9 +14,10 @@ export default function (props) {
             {reviews && reviews.map(review => {
               return (<div key={review.id} className="flexItem flexItemReview">
                   <h2>{review.title}</h2>
+                  
                   <h3>{review.author.name}</h3>
                   <h3>Rating: {review.rating}</h3>
-                  <h4>{review.description}</h4>
+                  <p>{review.description}</p>
                   <p>{review.updatedAt}</p>
               </div>);
             })}
