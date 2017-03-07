@@ -49,11 +49,7 @@ module.exports = require('express').Router()
   //lineitem.addProduct
   //need product in req.body
   //need quantity in req.body
-  .post('/cart/:userid/add', (req, res, next) => {
-    // console.log('REQBODYYYY', req.body);
-    // console.log("productid body", req.body.productId);
-    // console.log("quantity body", req.body.quantity )
-
+  .post('/cart/:userid', (req, res, next) => {
     let productId = +req.body.productId
     let quantity = +req.body.quantity
     let cart = req.cart
@@ -61,27 +57,24 @@ module.exports = require('express').Router()
 
     Product.findById(productId)
     .then(product => {
-      //console.log('PRODUCTIDDDD AFTERRRRRRR', product);
       return LineItem.findOrCreate({
         where: {
           name: product.title,
           price: product.price,
-          quantity: quantity
+          product_id: productId,
+          order_id: cart.id
+          // quantity: quantity
         }
       })
     })
   .then(createdLineItem => {
-  // console.log("createdLineItem", createdLineItem)
+   console.log("createdLineItem", createdLineItem[1])
   //all associations we are connecting below
-        lineitem=createdLineItem
-        return lineitem.setProduct(productId)
+    lineitem=createdLineItem[0]
+        return lineitem.update({
+          quantity: lineitem.quantity + quantity
+        })
     })
-  .then(()=> {
-    return lineitem.setOrder(req.cart.id)
-  })
-  .then(()=> {
-    return cart.addLineItem(lineitem.id)
-  })
   .then(function() {
     res.status(201).json(lineitem);
   })
