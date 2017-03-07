@@ -1,47 +1,48 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import {Link} from 'react-router';
+import { connect } from 'react-redux';
 
 
-export default class Cart extends Component {
-constructor() {
-  super();
-  this.state = { lineItemList: [] };
-  this.orderid = 1;
-}
+export class Cart extends Component {
+// constructor() {
+//   super();
+//   // this.state = { this.props.cart: [] };
+//   // this.orderid = 1;
+// }
 
 
-componentDidMount () {
-  axios.get(`/api/orders/order/${this.orderid}`)
-  .then(res => {
-      console.log('RES DATA', res.data);
-    return res.data;
-  })
-  .then(lineItems => {
-      console.log('LINEITEMLIST', this.state.lineItem);
-    this.setState({
-        lineItemList: lineItems
-    })
-
-  }) 
-}
+// componentDidMount () {
+  //this can be put in an onEnter
+  // axios.get(`/api/orders/order/${this.orderid}`)
+  // .then(res => {
+  //     console.log('RES DATA', res.data);
+  //   return res.data;
+  // })
+  // .then(lineItems => {
+  //   this.setState({
+  //       this.props.cart: lineItems
+  //   })
+  //   console.log('LINEITEMLIST', this.state.lineItemList);
+  // })
+// }
 
 
   render () {
-    var lineItemList = this.state.lineItemList;
+    // var lineItemList = this.state.lineItemList;
 
     // IMAGE SOURCE:
     const defaultImg = 'https://s-media-cache-ak0.pinimg.com/236x/00/c8/78/00c878efe94e7ef87c4eec68b612de6f.jpg'
-
+    console.log('PROPS', this.props)
     return (
       <div>
-        <h1>Shopping Bag</h1>
+        <h1>Your Shopping Bag</h1>
 
 
         <div className="flexContainer2">
-        {lineItemList.map(lineItem => {
+        {this.props.cart && this.props.cart.map(lineItem => {
             return (<div key={lineItem.id} className="flexContainer1 flexItem cartItem">
-            
+
             <div className="flexItem">
             <Link to={`/products/${lineItem.product_id}`}>
             <img src={defaultImg} />
@@ -57,27 +58,17 @@ componentDidMount () {
                 </div>
             </div>
 
-
-             
                 <div className="cartItemPrice flexItem">
                 <h6>${lineItem.price}.00</h6>
                 </div>
-
-
 
                 <div className="cartItemQuantity flexItem">
                 <h6>Quantity: {lineItem.quantity}</h6>
                 </div>
 
-
-
-
                 <div className="cartItemTotal flexItem">
                 <h6>Total: ${lineItem.itemTotal}.00</h6>
                 </div>
-
-
-
             </div>)
           })}
 
@@ -89,3 +80,11 @@ componentDidMount () {
 
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+    cart: state.cart
+  }
+}
+export default connect(mapStateToProps)(Cart)

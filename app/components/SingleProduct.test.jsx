@@ -33,7 +33,6 @@ describe('<SingleProduct />', () => {
         expect(wrapper.find('button')).to.have.length(1);
     });
 
-
     it('should have an quantity select dropdown', function () {
         expect(wrapper.find('select')).to.have.length(1);
     });

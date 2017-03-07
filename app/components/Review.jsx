@@ -2,7 +2,6 @@ import React from 'react';
 import store from '../store';
 
 export default function (props) {
-    console.log("review for item", props.reviews);
     let reviews=props.reviews
 
     return (

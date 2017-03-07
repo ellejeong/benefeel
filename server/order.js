@@ -38,7 +38,11 @@ module.exports = require('express').Router()
    //Get Cart of user by user id
    //use for unauth users ?
   .get('/cart/:userid', (req, res, next)=>{
-    res.status(200).json(req.cart);
+     req.cart.getLineItems()
+      .then((lineItems)=>{
+        res.status(200).json(lineItems);
+    }).catch(next)
+    // res.status(200).json(req.cart);
   })
   //post: add item to cart relying on router.param for 'cart'
   //create lineitem from product
@@ -58,7 +62,7 @@ module.exports = require('express').Router()
     Product.findById(productId)
     .then(product => {
       //console.log('PRODUCTIDDDD AFTERRRRRRR', product);
-      return LineItem.findOrCreate({ 
+      return LineItem.findOrCreate({
         where: {
           name: product.title,
           price: product.price,
@@ -73,16 +77,12 @@ module.exports = require('express').Router()
         return lineitem.setProduct(productId)
     })
   .then(()=> {
-    console.log('PRODUCT SETTTTTTT')
     return lineitem.setOrder(req.cart.id)
   })
   .then(()=> {
-    console.log('ORDER SETTTTTTTTTTT')
-    console.log('cart: ', cart)
     return cart.addLineItem(lineitem.id)
   })
   .then(function() {
-    console.log('AFTER ORDER SETTTINGGGGG')
     res.status(201).json(lineitem);
   })
   .catch(next)
