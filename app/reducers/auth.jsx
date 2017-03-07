@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const reducer = (state=null, action) => {
+  console.log('action:', action);
   switch(action.type) {
   case AUTHENTICATED:
     return action.user
@@ -9,6 +10,7 @@ const reducer = (state=null, action) => {
 }
 
 const AUTHENTICATED = 'AUTHENTICATED'
+
 export const authenticated = user => ({
   type: AUTHENTICATED, user
 })

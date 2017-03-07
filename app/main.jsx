@@ -13,7 +13,7 @@ import { receiveCart } from './action-creators/cart';
 
 import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
-import Login from './components/Login';
+// import Login from './components/Login';
 import SingleProductContainer from './containers/SingleProductContainer';
 import CategoriesContiner from './containers/CategoriesContainer';
 import OrderHistoryContainer from './containers/OrderHistoryContainer';
@@ -21,6 +21,7 @@ import NavBar from './components/NavBar';
 import Cart from './components/Cart';
 import UserPage from './components/UserPage';
 import UserProfile from './components/UserProfile'
+import UserLogin from './components/UserLogin'
 
 
 const ExampleApp = connect(
@@ -32,9 +33,9 @@ const ExampleApp = connect(
       <NavBar />
     </div>
     <div>
-      <nav>
+     {/*} <nav>
         {user ? <WhoAmI/> : <Login/>}
-      </nav>
+      </nav> */}
       {children}
     </div>
   </div>
@@ -80,6 +81,8 @@ render(
         <Route path="/orderhistory" component={OrderHistoryContainer} />
         <Route path="/userprofile" component={UserProfile} />
         <Route path="/cart" component={Cart} />
+        <Route path="/login" component={UserLogin} />
+
 
       </Route>
     </Router>
