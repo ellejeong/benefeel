@@ -9,6 +9,8 @@ import store from './store'
 import WhoAmI from './components/WhoAmI'
 
 import { receiveProduct, selectAllProducts, receiveCategories, selectAllReviews } from './action-creators/product';
+import { receiveCart } from './action-creators/cart';
+
 import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
 import Login from './components/Login';
@@ -57,6 +59,14 @@ const onCategoryEnter = nextState => {
   store.dispatch(receiveCategories(nextState.params.category));
 };
 
+const onCartEnter = nextState => {
+  let storeState = store.getState();
+  if (storeState.auth !== '' && storeState.auth !== null){
+  console.log('STORE STATE:', store.getState())
+  store.dispatch(receiveCart(storeState.auth));
+  }
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -65,10 +75,12 @@ render(
         <Route path="/products" component={Products} />
         <Route path="/products/:productId" component={SingleProductContainer} onEnter={onProductEnter} />
         <Route path="/categories/:category" component={Products} onEnter={onCategoryEnter} />
+        <Route path="/cart" component={Cart} onEnter={onCartEnter} />
         <Route path="/users/:id" component={UserPage} />
         <Route path="/orderhistory" component={OrderHistoryContainer} />
         <Route path="/userprofile" component={UserProfile} />
         <Route path="/cart" component={Cart} />
+
       </Route>
     </Router>
   </Provider>,
