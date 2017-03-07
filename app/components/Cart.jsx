@@ -2,31 +2,11 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 import {Link} from 'react-router';
 import { connect } from 'react-redux';
+import { asyncRemoveFromCart } from 'APP/app/action-creators/cart'
+import store from '../store'
 
 
 export class Cart extends Component {
-// constructor() {
-//   super();
-//   // this.state = { this.props.cart: [] };
-//   // this.orderid = 1;
-// }
-
-
-// componentDidMount () {
-  //this can be put in an onEnter
-  // axios.get(`/api/orders/order/${this.orderid}`)
-  // .then(res => {
-  //     console.log('RES DATA', res.data);
-  //   return res.data;
-  // })
-  // .then(lineItems => {
-  //   this.setState({
-  //       this.props.cart: lineItems
-  //   })
-  //   console.log('LINEITEMLIST', this.state.lineItemList);
-  // })
-// }
-
 
   render () {
     // var lineItemList = this.state.lineItemList;
@@ -53,7 +33,7 @@ export class Cart extends Component {
                 <h6>{lineItem.name}</h6>
                 </div>
                 <div>
-                <button>REMOVE X</button>
+                <button onClick={this.props.handleRemove}>REMOVE X</button>
                 </div>
             </div>
 
@@ -90,4 +70,13 @@ const mapStateToProps = state => {
     cart: state.cart
   }
 }
-export default connect(mapStateToProps)(Cart)
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleRemove: (lineItem) => {
+      console.log('REMOVING THIS LINEITEM', lineItem)
+      dispatch(asyncRemoveFromCart(lineItem))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

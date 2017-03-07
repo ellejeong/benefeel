@@ -90,7 +90,13 @@ module.exports = require('express').Router()
   .catch(next)
   })
 
-
+  .delete('/cartitem/:itemId', (req, res, next) => {
+    LineItem.findById(req.params.itemId)
+    .then(item => {
+      return item.destroy()
+    })
+    .catch(next)
+  })
   /////////////////////////////////////////////////////////////////
   //router param, save order
   .param('orderid', (req, res, next, orderid) => {
