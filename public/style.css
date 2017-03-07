@@ -15,6 +15,23 @@ h3 {
     font-family: arial;
 }
 
+.login{
+  margin-bottom: 20px;
+}
+
+#home{
+  margin:auto;
+  padding: 30px;
+  width:100%;
+  background-color:mintcream;
+  text-align:center;
+  font-size: 3em;
+}
+
+#home img{
+  margin:auto;
+}
+
 .flexContainer {
     display: flex;
     flex-flow: row wrap;
