@@ -15,13 +15,13 @@ export class Products extends Component {
     }
 
     return (
-
       <div>
         <h1>Welcome to Benefeel!</h1>
         <div className="flexContainer">
 
           {products && products.map(product => {
-            return (<div key={product.id} className="flexItem">
+            return (
+              <div key={product.id} className="flexItem">
               <Link to={`/products/${product.id}`}>
                 <img src={product.imageURL} />
                 <h2>{product.title}</h2>
@@ -32,12 +32,8 @@ export class Products extends Component {
           })}
         </div>
       </div>
-
-
     );
-
     }
-
 }
 
 export const mapStateToProps = state => {

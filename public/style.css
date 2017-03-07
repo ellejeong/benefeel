@@ -1,4 +1,4 @@
-h1 {
+/*h1 {
     color: deeppink;
     font-family: arial;
 }
@@ -13,14 +13,42 @@ h2 {
 h3 {
     color: hotpink;
     font-family: arial;
+}*/
+
+body {
+    font: 1.125em/1.4 'Source Sans Pro', sans-serif;
+    /*background: #eff5f5;*/
+    color: deeppink;
+    text-align: center;
+    padding: 4em 0;
 }
+h1 {
+    font-weight: 900;
+    line-height: 1.2;
+    margin: .5em 0 1em;
+}
+h2 {
+    font-weight: 400;
+    font-size: 15px;
+    color: deeppink;
+    text-transform: uppercase;
+    letter-spacing: .25em; }
+
+.flexItem h3 {
+    font-weight: 400;
+    font-size: 14px;
+    color: hotpink;
+    text-transform: uppercase;
+    letter-spacing: .25em; }
 
 .flexContainer {
-    display: flex;
+    /*display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-content: flex-start;
-    align-items: center;
+    align-items: center;*/
+    display:flex;
+    justify-content:space-between;
 }
 
 .flexReviews{
@@ -48,7 +76,15 @@ h3 {
 
 .flexItem {
     text-align: center;
+    display:flex;
+    justify-content:space-between;
 }
+
+/*.flexItem div {
+    color: deeppink;
+    white-space:nowrap;
+    font-size: 20px;
+}*/
 
 .flexItemReview{
   text-align: left;
