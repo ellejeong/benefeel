@@ -15,7 +15,7 @@ const mapStateToProps = state => {
   return {
     selectedProduct: state.selectedProduct,
     allReviews: state.allReviews,
-    userId: state.auth.id
+    user: state.auth
   };
 };
 
@@ -45,7 +45,7 @@ export default connect(mapStateToProps)(
 
         handleSubmit(evt) {
             evt.preventDefault();
-            let userId = this.props.userId;
+            let userId = this.props.user.id;
             axios.post(`../api/orders/cart/${userId}`,{
               productId: this.props.selectedProduct.id,
               quantity: this.state.quantity
@@ -82,10 +82,11 @@ export default connect(mapStateToProps)(
                         handleSubmit={this.handleSubmit}
                         handleInputChange={this.handleInputChange}
                     />
-                  {this.props.selectedProduct ?
+                  {this.props.selectedProduct  ?
                     <div>
                       <ReviewForm
                         handleSubmit={this.handleReviewSubmit}
+                        user={this.props.user}
                       />
                       <Review
                         reviews={reviews}
