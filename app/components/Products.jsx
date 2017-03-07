@@ -21,7 +21,7 @@ export class Products extends Component {
 
           {products && products.map(product => {
             return (
-              <div key={product.id} className="flexItem">
+              <div key={product.id} className="flexItem flexProducts">
               <Link to={`/products/${product.id}`}>
                 <img src={product.imageURL} />
                 <h2>{product.title}</h2>

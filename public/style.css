@@ -43,10 +43,10 @@ h2 {
 
 .flexContainer {
     /*display: flex;
+    justify-content: flex-start;*/
     flex-flow: row wrap;
-    justify-content: flex-start;
     align-content: flex-start;
-    align-items: center;*/
+    align-items: center;
     display:flex;
     justify-content:space-between;
 }
@@ -79,6 +79,13 @@ h2 {
     display:flex;
     justify-content:space-between;
 }
+
+.flexProducts{
+    background-color: cadetblue;
+    width: 150px;
+    height: 150px;
+}
+
 
 /*.flexItem div {
     color: deeppink;
