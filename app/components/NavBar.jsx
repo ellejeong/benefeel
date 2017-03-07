@@ -6,12 +6,14 @@ import SearchBarContainer from 'APP/app/containers/SearchBarContainer';
 import CategoriesContainer from 'APP/app/containers/CategoriesContainer';
 import store from 'APP/app/store';
 import { selectAllProducts, selectCategory } from 'APP/app/action-creators/product';
+import {logout} from '../reducers/auth';
 
 export class NavBar extends Component {
 	constructor(props) {
 		super(props);
 
 		this.onBrandClick = this.onBrandClick.bind(this);
+		this.onLogout = this.onLogout.bind(this);
 	}
 
 	onBrandClick(event) {
@@ -19,6 +21,12 @@ export class NavBar extends Component {
 		store.dispatch(selectCategory(null));
 		store.dispatch(selectAllProducts(this.props.products));
 		browserHistory.push('/products');
+	}
+
+	onLogout(event){
+		event.preventDefault();
+		store.dispatch(logout());
+		browserHistory.push('/');
 	}
 
 	render() {
@@ -41,12 +49,13 @@ export class NavBar extends Component {
 						<SearchBarContainer />
 					</div>
 					<ul className="nav navbar-nav navbar-right">
-
-						<li><a href="/">Login/Signup</a></li>
+						{(this.props.user === '' || this.props.user === null) ? <li><Link to="/login">Login/Signup</Link></li>
+						: <div>Hi {this.props.user.name}!</div>}
+						{/*<li><Link to="/login">Login/Signup</Link></li>*/}
 						<li><Link to="/cart">Cart</Link></li>
-						<li><a href="/users/profile">Account</a></li>
-
-						<li><a href="#">Logout</a></li>
+						<li><Link to="/dashboard">Account</Link></li>
+						{(this.props.user !== '' && this.props.user !== null) ? <li><Link onClick={this.onLogout}  to="/products">Logout</Link></li>
+						: <div></div>}
 					</ul>
 					</div>
 				</div>
@@ -57,7 +66,9 @@ export class NavBar extends Component {
 }
 
 const mapStateToProps = state => {
-	return ({ products: state.allProducts });
+	return ({ products: state.allProducts, user: state.auth });
 };
+
+
 
 export default connect(mapStateToProps)(NavBar);
