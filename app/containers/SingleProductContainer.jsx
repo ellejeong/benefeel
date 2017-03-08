@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import store from '../store'
 
+
 const mapStateToProps = state => {
   return {
     selectedProduct: state.selectedProduct,

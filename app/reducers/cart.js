@@ -12,10 +12,10 @@ export default function (state = initialState, action) {
 			return action.cart;
 
         case REMOVE_FROM_CART:
+			console.log('IM REMOVING')
 			return action.cart;
 
         case LOAD_CART:
-            console.log('LOAD CART ACTION', action)
             //action.cart is an array of line items
 			return action.cart;
 

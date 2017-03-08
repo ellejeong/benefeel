@@ -8,9 +8,9 @@ export const addToCart = product => ({
     product: product
 })
 
-export const removeFromCart = product => ({
+export const removeFromCart = lineitem => ({
     type: REMOVE_FROM_CART,
-    product: product
+    lineitem: lineitem
 })
 
 export const loadCart = lineItems => ({
@@ -19,11 +19,9 @@ export const loadCart = lineItems => ({
 })
 
 export const receiveCart = (auth) => {
-    console.log('AUTH', auth)
     return dispatch => {
         axios.get(`/api/orders/cart/${auth.id}`)
         .then(order => {
-            console.log('ORDER', order);
             dispatch(loadCart(order.data))
         })
         .then()
@@ -31,13 +29,13 @@ export const receiveCart = (auth) => {
     };
 }
 
-export const asyncRemoveFromCart = (auth) => {
+export const asyncRemoveFromCart = (lineitem) => {
     return dispatch => {
-        axios.delete(`/api/orders/cart/${auth.id}`)
-        .then(order => {
-
+        axios.delete(`/api/orders/cartitem/${lineitem.id}`)
+        .then(deleted => {
+            console.log('THE DELETED ITEM', deleted)
+            dispatch(removeFromCart(deleted.data))
         })
-        .then()
         .catch(console.error())
     };
 }
