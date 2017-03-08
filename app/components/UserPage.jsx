@@ -11,18 +11,15 @@ export class UserPage extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h1>Welcome to your dashboard!</h1>
         <div className="col-xs-2">
           <UserSidebarContainer />
         </div>
-
         <div className='hi-dashboard'>
         Hi {this.props.user.name}! Great to see you. Now that you're signed in, just roll over the options on the left to update any of your information.
         </div>
-
       </div>
     );
 

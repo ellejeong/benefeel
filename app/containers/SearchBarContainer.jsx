@@ -50,7 +50,6 @@ export class SearchBarContainer extends Component {
 export const mapStateToProps = (state) => {
 	return {
 		products: state.allProducts,
-		selectedProduct: state.selectedProduct
 	};
 };
 
