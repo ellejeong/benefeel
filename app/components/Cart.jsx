@@ -35,7 +35,7 @@ export class Cart extends Component {
                 </div>
                 <div>
                 <button onClick={
-                  () => this.props.handleRemove(lineItem)
+                  () => this.props.handleRemove(lineItem, this.props.cart)
                   }>REMOVE X</button>
                 </div>
             </div>
@@ -72,9 +72,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleRemove: (lineItem) => {
-      console.log('REMOVING THIS LINEITEM', lineItem)
-      dispatch(asyncRemoveFromCart(lineItem))
+    handleRemove: (lineItem,cart) => {
+      console.log('REMOVING THIS LINEITEM', lineItem,cart)
+      dispatch(asyncRemoveFromCart(lineItem,cart))
     }
   }
 }

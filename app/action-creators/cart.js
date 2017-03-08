@@ -8,9 +8,10 @@ export const addToCart = product => ({
     product: product
 })
 
-export const removeFromCart = lineitem => ({
+export const removeFromCart = (lineitemId, cart) => ({
     type: REMOVE_FROM_CART,
-    lineitem: lineitem
+    lineitemId: lineitemId,
+    cart: cart
 })
 
 export const loadCart = lineItems => ({
@@ -29,12 +30,13 @@ export const receiveCart = (auth) => {
     };
 }
 
-export const asyncRemoveFromCart = (lineitem) => {
+export const asyncRemoveFromCart = (lineitem, cart) => {
+    let lineitemId = lineitem.id;
     return dispatch => {
         axios.delete(`/api/orders/cartitem/${lineitem.id}`)
-        .then(deleted => {
-            console.log('THE DELETED ITEM', deleted)
-            dispatch(removeFromCart(deleted.data))
+        .then(() => {
+            console.log('in the async action creator')
+            dispatch(removeFromCart(lineitemId, cart))
         })
         .catch(console.error())
     };

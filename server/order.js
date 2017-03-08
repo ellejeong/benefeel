@@ -95,6 +95,9 @@ module.exports = require('express').Router()
     .then(item => {
       return item.destroy()
     })
+    .then(() => {
+      res.sendStatus(200)
+    })
     .catch(next)
   })
   /////////////////////////////////////////////////////////////////
