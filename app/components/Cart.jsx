@@ -7,13 +7,14 @@ import store from '../store'
 
 
 export class Cart extends Component {
+  constructor(props){
+    super()
+  }
 
   render () {
-    // var lineItemList = this.state.lineItemList;
-
     // IMAGE SOURCE:
     const defaultImg = 'https://s-media-cache-ak0.pinimg.com/236x/00/c8/78/00c878efe94e7ef87c4eec68b612de6f.jpg'
-    console.log('PROPS', this.props)
+
     return (
       <div>
         <h1>Your Shopping Bag</h1>
@@ -33,25 +34,23 @@ export class Cart extends Component {
                 <h6>{lineItem.name}</h6>
                 </div>
                 <div>
-                <button onClick={this.props.handleRemove}>REMOVE X</button>
+                <button onClick={
+                  () => this.props.handleRemove(lineItem)
+                  }>REMOVE X</button>
                 </div>
             </div>
-
                 <div className="cartItemPrice flexItem">
                 <h6>${lineItem.price}.00</h6>
                 </div>
-
                 <div className="cartItemQuantity flexItem">
                 <h6>Quantity: {lineItem.quantity}</h6>
                 </div>
-
                 <div className="cartItemTotal flexItem">
                 <h6>Total: ${lineItem.itemTotal}.00</h6>
                 </div>
             </div>
             )
           })}
-
         </div>
         <div>
           <h2>Subtotal: ${this.props.cart.subtotal}.00</h2>

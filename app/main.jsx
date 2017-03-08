@@ -63,7 +63,6 @@ const onCategoryEnter = nextState => {
 const onCartEnter = nextState => {
   let storeState = store.getState();
   if (storeState.auth !== '' && storeState.auth !== null){
-  console.log('STORE STATE:', store.getState())
   store.dispatch(receiveCart(storeState.auth));
   }
 }

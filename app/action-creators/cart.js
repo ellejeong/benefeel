@@ -19,11 +19,9 @@ export const loadCart = lineItems => ({
 })
 
 export const receiveCart = (auth) => {
-    console.log('AUTH', auth)
     return dispatch => {
         axios.get(`/api/orders/cart/${auth.id}`)
         .then(order => {
-            console.log('ORDER', order);
             dispatch(loadCart(order.data))
         })
         .then()
@@ -33,11 +31,10 @@ export const receiveCart = (auth) => {
 
 export const asyncRemoveFromCart = (lineitem) => {
     return dispatch => {
-        console.log('WHY IS THIS UNDEFINED', lineitem)
         axios.delete(`/api/orders/cartitem/${lineitem.id}`)
         .then(deleted => {
             console.log('THE DELETED ITEM', deleted)
-            dispatch(removeFromCart(lineitem.data))
+            dispatch(removeFromCart(deleted.data))
         })
         .catch(console.error())
     };
