@@ -18,6 +18,11 @@ describe('Routes: Products: /api/products', () => {
         .get(`/api/products/1`)
         .expect(200)
     )
+    it('/api/products/:id sends status 404', () =>
+      request(app)
+        .get(`/api/products/99999999`)
+        .expect(404)
+    )
   })
   describe('get all reviews of a product', () => {
     it('/api/products/:id/reviews sends status 200', () =>
