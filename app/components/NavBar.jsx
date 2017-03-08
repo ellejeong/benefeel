@@ -18,14 +18,13 @@ export class NavBar extends Component {
 
 	onBrandClick(event) {
 		event.preventDefault();
-		store.dispatch(selectCategory(null));
-		store.dispatch(selectAllProducts(this.props.products));
+		this.props.selectCategory(null);
 		browserHistory.push('/products');
 	}
 
 	onLogout(event){
 		event.preventDefault();
-		store.dispatch(logout());
+		this.props.logout();
 		browserHistory.push('/');
 	}
 
@@ -51,7 +50,6 @@ export class NavBar extends Component {
 					<ul className="nav navbar-nav navbar-right">
 						{(this.props.user === '' || this.props.user === null) ? <li><Link to="/login">Login/Signup</Link></li>
 						: <div>Hi {this.props.user.name}!</div>}
-						{/*<li><Link to="/login">Login/Signup</Link></li>*/}
 						<li><Link to="/cart">Cart</Link></li>
 						<li><Link to="/dashboard">Account</Link></li>
 						{(this.props.user !== '' && this.props.user !== null) ? <li><Link onClick={this.onLogout}  to="/products">Logout</Link></li>
@@ -69,6 +67,6 @@ const mapStateToProps = state => {
 	return ({ products: state.allProducts, user: state.auth });
 };
 
+const mapDispatchToProps = {selectCategory, logout};
 
-
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
