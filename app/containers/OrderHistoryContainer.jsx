@@ -5,19 +5,15 @@ import OrderHistory from 'APP/app/components/OrderHistory';
 
 
 export default class OrderHistoryContainer extends Component {
-constructor() {
-  super();
-
-}
-
+  constructor() {
+    super();
+  }
 
   render () {
     return (
       <div>
       <OrderHistory />
       </div>
-
     )
-
   }
 }

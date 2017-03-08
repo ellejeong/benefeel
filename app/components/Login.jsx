@@ -1,12 +1,14 @@
 import React from 'react'
+import {browserHistory} from 'react-router';
 
 export const Login = ({ login }) => (
   <form className="login" onSubmit={evt => {
     evt.preventDefault()
-    login(evt.target.username.value, evt.target.password.value)
+    login(evt.target.username.value, evt.target.password.value);
+     browserHistory && browserHistory.push('/dashboard');
   } }>
-    <input name="username" />
-    <input name="password" type="password" />
+    <input name="username" placeholder="email"/>
+    <input name="password" type="password" placeholder="password" />
     <input type="submit" value="Login" />
   </form>
 )

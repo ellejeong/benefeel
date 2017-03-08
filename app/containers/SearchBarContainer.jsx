@@ -30,7 +30,7 @@ export class SearchBarContainer extends Component {
 			return product.title.match(this.state.searchTerm);
 		});
 
-		store.dispatch(selectProduct(searchedProduct));
+		this.props.handleSearchSubmit(searchedProduct);
 		browserHistory.push(`/products/${searchedProduct[0].id}`);
 	}
 
@@ -54,5 +54,13 @@ export const mapStateToProps = (state) => {
 	};
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleSearchSubmit (searchedProduct) {
+      return dispatch(selectProduct(searchedProduct));
+    }
+  };
+};
 
-export default connect(mapStateToProps)(SearchBarContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBarContainer);

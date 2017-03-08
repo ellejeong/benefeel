@@ -13,7 +13,7 @@ import { receiveCart } from './action-creators/cart';
 
 import SingleProduct from './components/SingleProduct';
 import Products from './components/Products';
-import Login from './components/Login';
+// import Login from './components/Login';
 import SingleProductContainer from './containers/SingleProductContainer';
 import CategoriesContiner from './containers/CategoriesContainer';
 import OrderHistoryContainer from './containers/OrderHistoryContainer';
@@ -21,7 +21,9 @@ import NavBar from './components/NavBar';
 import Cart from './components/Cart';
 import UserPage from './components/UserPage';
 import UserProfile from './components/UserProfile'
+import UserLogin from './components/UserLogin'
 import Home from './components/Home'
+
 
 
 const ExampleApp = connect(
@@ -33,9 +35,9 @@ const ExampleApp = connect(
       <NavBar />
     </div>
     <div>
-      <nav>
+     {/*} <nav>
         {user ? <WhoAmI/> : <Login/>}
-      </nav>
+      </nav> */}
       {children}
     </div>
   </div>
@@ -67,6 +69,13 @@ const onCartEnter = nextState => {
   }
 }
 
+const onDashboardEnter = nextState => {
+  let storeState = store.getState();
+  if (storeState.auth === '' || storeState.auth === null){
+    console.log('Please login to view this page!');
+  }
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -77,10 +86,13 @@ render(
         <Route path="/products/:productId" component={SingleProductContainer} onEnter={onProductEnter} />
         <Route path="/categories/:category" component={Products} onEnter={onCategoryEnter} />
         <Route path="/cart" component={Cart} onEnter={onCartEnter} />
-        <Route path="/users/:id" component={UserPage} />
         <Route path="/orderhistory" component={OrderHistoryContainer} />
         <Route path="/userprofile" component={UserProfile} />
         <Route path="/cart" component={Cart} />
+        <Route path="/login" component={UserLogin} />
+        <Route path="/dashboard" component={UserPage} onEnter={onDashboardEnter} />
+
+
 
       </Route>
     </Router>
